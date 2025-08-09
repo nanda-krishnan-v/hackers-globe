@@ -9,17 +9,23 @@ const Navbar = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link to="/" className="text-lg font-bold">
-          CyberPlaybook
+          HackersGlobe
         </Link>
 
         <nav className="hidden md:flex items-center space-x-6">
-          <a href="/#basics" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
-            Basics
+          <a
+            href="/#basics"
+            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+          >
+            Home
           </a>
-          <Link to="/experiment" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
+          {/* <Link to="/experiments" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
             Experiments
-          </Link>
-          <Link to="/material" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
+          </Link> */}
+          <Link
+            to="/materials"
+            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+          >
             Materials
           </Link>
         </nav>
@@ -38,10 +44,10 @@ const Navbar = () => {
                 <a href="/#basics" className="text-lg font-medium">
                   Basics
                 </a>
-                <Link to="/experiment" className="text-lg font-medium">
+                <Link to="/experiments" className="text-lg font-medium">
                   Experiments
                 </Link>
-                <Link to="/material" className="text-lg font-medium">
+                <Link to="/materials" className="text-lg font-medium">
                   Materials
                 </Link>
               </div>
