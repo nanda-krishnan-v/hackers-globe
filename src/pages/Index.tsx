@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 import SearchBar from "@/components/SearchBar";
 import TabBar from "@/components/TabBar";
 import CommandCard, { type Command } from "@/components/CommandCard";
@@ -51,7 +53,10 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <header className="container mx-auto px-4 pt-12 pb-8">
-        <div className="max-w-5xl mx-auto flex items-center justify-end">
+        <div className="max-w-5xl mx-auto flex items-center justify-between">
+          <Button asChild variant="link">
+            <Link to="/basics">Basics</Link>
+          </Button>
           <ThemeToggle />
         </div>
         <div className="mx-auto max-w-3xl text-center">
