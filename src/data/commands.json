@@ -1,0 +1,107 @@
+[
+  {
+    "name": "ping",
+    "category": "Networking Tools",
+    "description": "Check connectivity to a host and measure latency.",
+    "usage": "ping -c 4 example.com",
+    "output": "PING example.com (93.184.216.34): 56 data bytes\n64 bytes from 93.184.216.34: icmp_seq=0 ttl=56 time=23.4 ms\n--- example.com ping statistics ---\n4 packets transmitted, 4 received, 0% packet loss"
+  },
+  {
+    "name": "traceroute",
+    "category": "Networking Tools",
+    "description": "Trace the route packets take to a network host.",
+    "usage": "traceroute example.com",
+    "output": "traceroute to example.com (93.184.216.34), 30 hops max\n 1  10.0.0.1  1.123 ms\n 2  192.0.2.1  10.345 ms"
+  },
+  {
+    "name": "nslookup",
+    "category": "Networking Tools",
+    "description": "Query DNS records for a domain.",
+    "usage": "nslookup -type=A example.com",
+    "output": "Non-authoritative answer:\nName: example.com\nAddress: 93.184.216.34"
+  },
+  {
+    "name": "nmap",
+    "category": "Ethical Hacking",
+    "description": "Network scanner for host discovery and port scanning.",
+    "usage": "nmap -sV -T4 192.168.1.0/24",
+    "output": "Starting Nmap...\nPORT   STATE SERVICE VERSION\n22/tcp open  ssh     OpenSSH 8.9"
+  },
+  {
+    "name": "nikto",
+    "category": "Ethical Hacking",
+    "description": "Web server scanner for dangerous files and vulnerabilities.",
+    "usage": "nikto -h http://example.com",
+    "output": "+ Server: nginx/1.23\n+ Scanned host: example.com\n+ End Time: 12:34:56"
+  },
+  {
+    "name": "sqlmap",
+    "category": "Ethical Hacking",
+    "description": "Automated tool to test SQL injection vulnerabilities (use ethically).",
+    "usage": "sqlmap -u 'http://example.com/item.php?id=1' --batch --dbs",
+    "output": "[INFO] testing connection to the target URL\n[INFO] fetching database names\navailable databases [2]:\n[*] information_schema\n[*] exampledb"
+  },
+  {
+    "name": "openssl",
+    "category": "Cryptography",
+    "description": "Toolkit for TLS/SSL and cryptographic operations.",
+    "usage": "openssl enc -aes-256-cbc -salt -in file.txt -out file.txt.enc",
+    "output": "enter aes-256-cbc encryption password:"
+  },
+  {
+    "name": "gpg",
+    "category": "Cryptography",
+    "description": "GNU Privacy Guard for encryption and signing.",
+    "usage": "gpg --output doc.gpg --symmetric doc.txt",
+    "output": "Enter passphrase:"
+  },
+  {
+    "name": "sha256sum",
+    "category": "Cryptography",
+    "description": "Compute SHA-256 checksum of a file.",
+    "usage": "sha256sum file.iso",
+    "output": "d2c7a1...  file.iso"
+  },
+  {
+    "name": "strings",
+    "category": "Digital Forensics",
+    "description": "Extract printable strings from binary files.",
+    "usage": "strings suspect.bin | less",
+    "output": "ELF\n/lib64/ld-linux-x86-64.so.2\nprintf"
+  },
+  {
+    "name": "exiftool",
+    "category": "Digital Forensics",
+    "description": "Read and write metadata in files (images, docs).",
+    "usage": "exiftool image.jpg",
+    "output": "ExifTool Version Number         : 12.60\nFile Name                       : image.jpg\nMIME Type                       : image/jpeg"
+  },
+  {
+    "name": "binwalk",
+    "category": "Digital Forensics",
+    "description": "Analyze binary files for embedded files and executable code.",
+    "usage": "binwalk firmware.bin",
+    "output": "DECIMAL       HEXADECIMAL     DESCRIPTION\n0             0x0             PNG image data"
+  },
+  {
+    "name": "grep",
+    "category": "Linux Basics",
+    "description": "Search for patterns within files.",
+    "usage": "grep -R \"error\" /var/log",
+    "output": "/var/log/syslog:... error ..."
+  },
+  {
+    "name": "find",
+    "category": "Linux Basics",
+    "description": "Find files and directories by name, size, or other attributes.",
+    "usage": "find /var/www -type f -name \"*.log\"",
+    "output": "/var/www/app/logs/app.log"
+  },
+  {
+    "name": "chmod",
+    "category": "Linux Basics",
+    "description": "Change file permissions.",
+    "usage": "chmod -R 640 secrets/",
+    "output": ""
+  }
+]
