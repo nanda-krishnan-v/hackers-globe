@@ -1,4 +1,4 @@
-# 🔐 HackerGlobe
+# 🔐 HackersGlobe
 
 ![React](https://img.shields.io/badge/React-18-blue?logo=react)
 ![Vite](https://img.shields.io/badge/Vite-Fast-orange?logo=vite)
