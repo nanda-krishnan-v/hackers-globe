@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
+import Experiment from "./pages/Experiment";
+import Material from "./pages/Material";
 import Navbar from "./components/Navbar";
 
 const queryClient = new QueryClient();
@@ -21,6 +23,8 @@ const App = () => (
           <main className="pt-16">
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/experiment" element={<Experiment />} />
+              <Route path="/material" element={<Material />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

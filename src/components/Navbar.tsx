@@ -16,10 +16,10 @@ const Navbar = () => {
           <a href="/#basics" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
             Basics
           </a>
-          <Link to="/experiments" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
+          <Link to="/experiment" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
             Experiments
           </Link>
-          <Link to="/materials" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
+          <Link to="/material" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
             Materials
           </Link>
         </nav>
@@ -38,10 +38,10 @@ const Navbar = () => {
                 <a href="/#basics" className="text-lg font-medium">
                   Basics
                 </a>
-                <Link to="/experiments" className="text-lg font-medium">
+                <Link to="/experiment" className="text-lg font-medium">
                   Experiments
                 </Link>
-                <Link to="/materials" className="text-lg font-medium">
+                <Link to="/material" className="text-lg font-medium">
                   Materials
                 </Link>
               </div>
