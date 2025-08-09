@@ -42,12 +42,12 @@ const Navbar = () => {
             <SheetContent side="right">
               <div className="grid gap-4 p-4">
                 <a href="/#basics" className="text-lg font-medium">
-                  Basics
+                  Home
                 </a>
-                <Link to="/experiments" className="text-lg font-medium">
+                {/* <Link to="/experiments" className="text-lg font-medium">
                   Experiments
-                </Link>
-                <Link to="/materials" className="text-lg font-medium">
+                </Link> */}
+                <Link to="/Material" className="text-lg font-medium">
                   Materials
                 </Link>
               </div>
