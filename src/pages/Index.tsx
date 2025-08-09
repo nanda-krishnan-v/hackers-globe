@@ -5,6 +5,7 @@ import CommandCard, { type Command } from "@/components/CommandCard";
 import commandsData from "@/data/commands.json";
 import ThemeToggle from "@/components/ThemeToggle";
 import ExternalLinks from "@/components/ExternalLinks";
+import ExperimentButtons from "@/components/ExperimentButtons";
 
 const CATEGORIES = [
   "Networking Tools",
@@ -66,6 +67,9 @@ const Index = () => {
           <SearchBar value={searchTerm} onChange={setSearchTerm} />
           <div className="mt-4">
             <TabBar tabs={[...CATEGORIES]} active={activeCategory} onChange={(t) => setActiveCategory(t as Category)} />
+          </div>
+          <div className="mt-6 flex justify-center">
+            <ExperimentButtons />
           </div>
         </div>
       </header>
