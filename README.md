@@ -1,73 +1,81 @@
-# Welcome to your Lovable project
+# Cyber Command Playbook
 
-## Project info
+This project is a web application designed to be a one-stop resource for cybersecurity commands, concepts, and experiments. It's built with React, TypeScript, and Vite, and styled with Tailwind CSS and shadcn/ui.
 
-**URL**: https://lovable.dev/projects/3c3cd6ab-f5d9-4848-9b13-8fc944d44b56
+## Features
 
-## How can I edit this code?
+*   **Landing Page**: A welcoming introduction to the Cyber Command Playbook.
+*   **Cybersecurity Basics**: A comprehensive overview of fundamental concepts like IP and MAC addresses, TCP, and the OSI model.
+*   **Navigation**: A responsive navigation bar that provides easy access to different sections of the application.
+*   **Theme Toggle**: A button to switch between light and dark modes.
 
-There are several ways of editing your application.
+## Tech Stack
 
-**Use Lovable**
+*   **Framework**: [React](https://reactjs.org/)
+*   **Language**: [TypeScript](https://www.typescriptlang.org/)
+*   **Build Tool**: [Vite](https://vitejs.dev/)
+*   **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+*   **UI Components**: [shadcn/ui](https://ui.shadcn.com/)
+*   **Routing**: [React Router](https://reactrouter.com/)
+*   **State Management**: [React Query](https://tanstack.com/query/v5)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/3c3cd6ab-f5d9-4848-9b13-8fc944d44b56) and start prompting.
+## Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
 
-**Use your preferred IDE**
+*   [Node.js](https://nodejs.org/) (v18 or higher)
+*   [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/nanda-krishnan-v/cyber-command-playbook.git
+    ```
+2.  Navigate to the project directory:
+    ```bash
+    cd cyber-command-playbook
+    ```
+3.  Install the dependencies:
+    ```bash
+    npm install
+    ```
 
-Follow these steps:
+### Running the Development Server
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+To start the development server, run the following command:
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+This will start the application on `http://localhost:5173`.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Building for Production
 
-**Use GitHub Codespaces**
+To build the application for production, run the following command:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```bash
+npm run build
+```
 
-## What technologies are used for this project?
+This will create a `dist` directory with the optimized production build.
 
-This project is built with:
+## Project Structure
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/3c3cd6ab-f5d9-4848-9b13-8fc944d44b56) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+```
+.
+├── public/
+├── src/
+│   ├── components/
+│   │   ├── ui/
+│   │   ├── Navbar.tsx
+│   │   └── ThemeToggle.tsx
+│   ├── pages/
+│   │   ├── Home.tsx
+│   │   └── NotFound.tsx
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── ...
+├── package.json
+└── ...
