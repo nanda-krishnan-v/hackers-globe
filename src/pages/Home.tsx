@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
   Card,
   CardContent,
@@ -1083,7 +1084,7 @@ const Home = () => {
       </section>
 
       {/* Getting Started Section */}
-      <section id="getting-started" className="bg-muted/30 py-16">
+      {/* <section id="getting-started" className="bg-muted/30 py-16">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
             Ready to Start Your Journey?
@@ -1094,44 +1095,50 @@ const Home = () => {
           </p>
 
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-              <CardContent className="p-6 text-center">
-                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-950 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Eye className="w-6 h-6 text-blue-600" />
-                </div>
-                <h3 className="font-semibold mb-2">Explore Experiments</h3>
-                <p className="text-sm text-muted-foreground">
-                  Try hands-on cybersecurity experiments and simulations
-                </p>
-              </CardContent>
-            </Card>
+            <Link to="/experiment">
+              <Card className="hover:shadow-lg transition-shadow h-full">
+                <CardContent className="p-6 text-center flex flex-col items-center justify-center">
+                  <div className="w-12 h-12 bg-blue-100 dark:bg-blue-950 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Eye className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <h3 className="font-semibold mb-2">Explore Experiments</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Try hands-on cybersecurity experiments and simulations
+                  </p>
+                </CardContent>
+              </Card>
+            </Link>
 
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-              <CardContent className="p-6 text-center">
-                <div className="w-12 h-12 bg-green-100 dark:bg-green-950 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="w-6 h-6 text-green-600" />
-                </div>
-                <h3 className="font-semibold mb-2">Study Materials</h3>
-                <p className="text-sm text-muted-foreground">
-                  Access comprehensive guides and reference materials
-                </p>
-              </CardContent>
-            </Card>
+            <Link to="/material">
+              <Card className="hover:shadow-lg transition-shadow h-full">
+                <CardContent className="p-6 text-center flex flex-col items-center justify-center">
+                  <div className="w-12 h-12 bg-green-100 dark:bg-green-950 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Users className="w-6 h-6 text-green-600" />
+                  </div>
+                  <h3 className="font-semibold mb-2">Study Materials</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Access comprehensive guides and reference materials
+                  </p>
+                </CardContent>
+              </Card>
+            </Link>
 
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-              <CardContent className="p-6 text-center">
-                <div className="w-12 h-12 bg-purple-100 dark:bg-purple-950 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Lock className="w-6 h-6 text-purple-600" />
-                </div>
-                <h3 className="font-semibold mb-2">Practice Commands</h3>
-                <p className="text-sm text-muted-foreground">
-                  Learn essential cybersecurity tools and commands
-                </p>
-              </CardContent>
-            </Card>
+            <a href="/#basics">
+              <Card className="hover:shadow-lg transition-shadow h-full">
+                <CardContent className="p-6 text-center flex flex-col items-center justify-center">
+                  <div className="w-12 h-12 bg-purple-100 dark:bg-purple-950 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Lock className="w-6 h-6 text-purple-600" />
+                  </div>
+                  <h3 className="font-semibold mb-2">Practice Commands</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Learn essential cybersecurity tools and commands
+                  </p>
+                </CardContent>
+              </Card>
+            </a>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };

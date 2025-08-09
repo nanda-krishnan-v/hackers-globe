@@ -173,16 +173,12 @@ const Material: React.FC = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 p-6">
-      <div className="max-w-6xl mx-auto">
+    <div className="bg-background min-h-screen p-6">
+      <div className="container mx-auto px-4 py-12">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">
-            Learning Materials & Resources
-          </h1>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Everything you need to advance your cybersecurity knowledge - from hands-on labs to command references
-          </p>
+          <h1 className="text-4xl font-extrabold text-foreground mb-2">Cybersecurity Materials</h1>
+          <p className="text-xl text-muted-foreground mb-10">Your comprehensive guide to tools, resources, and knowledge.</p>
         </div>
 
         {/* Hands-on Practice Labs */}
@@ -199,14 +195,14 @@ const Material: React.FC = () => {
               {practicalLabs.map((lab, index) => {
                 const IconComponent = lab.icon;
                 return (
-                  <div key={index} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-gray-100">
+                  <div key={index} className="bg-card rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-gray-100">
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="p-2 bg-red-100 rounded-lg">
+                      <div className="p-2 bg-card">
                         <IconComponent className="h-5 w-5 text-red-600" />
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-800">{lab.name}</h3>
+                      <h3 className="text-lg font-semibold text-foreground">{lab.name}</h3>
                     </div>
-                    <p className="text-gray-600 mb-3">{lab.description}</p>
+                    <p className="text-muted-foreground mb-3">{lab.description}</p>
                     <div className="flex items-center justify-between">
                       <span className="text-sm px-3 py-1 bg-green-100 text-green-700 rounded-full">
                         {lab.difficulty}
@@ -215,7 +211,7 @@ const Material: React.FC = () => {
                         href={lab.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-red-600 hover:text-red-700 font-medium transition-colors"
+                        className="inline-flex items-center gap-2 text-green-600 hover:text-green-700 font-medium transition-colors"
                       >
                         Launch Lab
                         <ExternalLink className="h-4 w-4" />
@@ -241,7 +237,7 @@ const Material: React.FC = () => {
             <div className="space-y-12 mb-8">
               {Object.entries(groupedCommands).map(([category, commands]) => (
                 <div key={category}>
-                  <h3 className="text-xl font-semibold mb-6 text-gray-800 bg-white p-4 rounded-lg shadow-sm">
+                  <h3 className="text-xl font-semibold mb-6 text-foreground bg-card p-4 rounded-lg shadow-sm">
                     {category}
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -267,9 +263,9 @@ const Material: React.FC = () => {
           {expandedSections['theoretical'] && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               {theoreticalResources.map((resource, index) => (
-                <div key={index} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-gray-100">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-3">{resource.title}</h3>
-                  <p className="text-gray-600 mb-4">{resource.description}</p>
+                <div key={index} className="bg-card rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-gray-100">
+                  <h3 className="text-lg font-semibold text-foreground mb-3">{resource.title}</h3>
+                  <p className="text-muted-foreground mb-4">{resource.description}</p>
                   <a 
                     href={resource.url}
                     target="_blank"
@@ -297,14 +293,14 @@ const Material: React.FC = () => {
           {expandedSections['certifications'] && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
               {certificationPaths.map((cert, index) => (
-                <div key={index} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-gray-100">
+                <div key={index} className="bg-card rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-gray-100">
                   <div className="text-center">
-                    <h3 className="text-lg font-semibold text-gray-800 mb-2">{cert.name}</h3>
+                    <h3 className="text-lg font-semibold text-foreground mb-2">{cert.name}</h3>
                     <p className="text-sm text-purple-600 font-medium mb-3">{cert.provider}</p>
                     <span className="inline-block px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm mb-3">
                       {cert.level}
                     </span>
-                    <p className="text-gray-600 text-sm">{cert.description}</p>
+                    <p className="text-muted-foreground text-sm">{cert.description}</p>
                   </div>
                 </div>
               ))}
@@ -322,12 +318,12 @@ const Material: React.FC = () => {
             iconColor="text-orange-600"
           />
           {expandedSections['communities'] && (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-muted/50 p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
               {communities.map((community, index) => (
-                <div key={index} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-gray-100">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-2">{community.name}</h3>
-                  <p className="text-sm text-orange-600 font-medium mb-3">{community.platform}</p>
-                  <p className="text-gray-600 mb-4">{community.description}</p>
+                <div key={index} className="bg-card rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-gray-100">
+                  <h3 className="text-lg font-semibold text-foreground mb-2">{community.name}</h3>
+                  <p className="text-sm text-muted-foreground mt-1">A curated list of platforms for hands-on practice.</p>
+                  <p className="text-muted-foreground mb-4">{community.description}</p>
                   <a 
                     href={community.url}
                     target="_blank"

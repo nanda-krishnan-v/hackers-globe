@@ -23,7 +23,7 @@ const Navbar = () => {
             Experiments
           </Link> */}
           <Link
-            to="/materials"
+            to="/material"
             className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
           >
             Materials
@@ -47,7 +47,7 @@ const Navbar = () => {
                 {/* <Link to="/experiments" className="text-lg font-medium">
                   Experiments
                 </Link> */}
-                <Link to="/Material" className="text-lg font-medium">
+                <Link to="/material" className="text-lg font-medium">
                   Materials
                 </Link>
               </div>
