@@ -3,6 +3,8 @@ import SearchBar from "@/components/SearchBar";
 import TabBar from "@/components/TabBar";
 import CommandCard, { type Command } from "@/components/CommandCard";
 import commandsData from "@/data/commands.json";
+import ThemeToggle from "@/components/ThemeToggle";
+import ExternalLinks from "@/components/ExternalLinks";
 
 const CATEGORIES = [
   "Networking Tools",
@@ -48,6 +50,9 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <header className="container mx-auto px-4 pt-12 pb-8">
+        <div className="max-w-5xl mx-auto flex items-center justify-end">
+          <ThemeToggle />
+        </div>
         <div className="mx-auto max-w-3xl text-center">
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
             Cybersecurity Command Center
@@ -79,6 +84,12 @@ const Index = () => {
               <p className="text-lg text-muted-foreground">No commands found. Try a different search term.</p>
             </div>
           )}
+        </section>
+
+        {/* External Resources */}
+        <section id="resources" aria-label="External resources" className="mt-16">
+          <h2 className="text-2xl font-semibold tracking-tight mb-4">External Resources</h2>
+          <ExternalLinks />
         </section>
       </main>
     </div>
