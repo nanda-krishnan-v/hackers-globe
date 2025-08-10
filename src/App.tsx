@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound";
 import Experiment from "./pages/Experiment";
 import Material from "./pages/Material";
 import Navbar from "./components/Navbar";
+import ScrollToTopButton from "./components/ScrollToTopButton";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ const App = () => (
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
+          <ScrollToTopButton />
         </BrowserRouter>
       </TooltipProvider>
     </ThemeProvider>
