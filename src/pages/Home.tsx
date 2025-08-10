@@ -786,7 +786,7 @@ const Home = () => {
               </p>
               <div className="flex items-center gap-4">
                 <a
-                  href="https://github.com"
+                  href="https://github.com/nanda-krishnan-v"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 rounded-xl bg-muted hover:bg-muted/80 transition-all duration-300 hover:scale-110"
@@ -794,7 +794,7 @@ const Home = () => {
                   <Github className="h-6 w-6 text-muted-foreground hover:text-foreground" />
                 </a>
                 <a
-                  href="https://twitter.com"
+                  href="https://x.com/VNandakrishnan"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 rounded-xl bg-muted hover:bg-muted/80 transition-all duration-300 hover:scale-110"
@@ -802,7 +802,7 @@ const Home = () => {
                   <Twitter className="h-6 w-6 text-muted-foreground hover:text-foreground" />
                 </a>
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/nanda-krishnan-v-11234b27b/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 rounded-xl bg-muted hover:bg-muted/80 transition-all duration-300 hover:scale-110"
@@ -810,7 +810,7 @@ const Home = () => {
                   <Linkedin className="h-6 w-6 text-muted-foreground hover:text-foreground" />
                 </a>
                 <a
-                  href="mailto:contact@hackersglobe.com"
+                  href="mailto:nandakrishnanv15@gmail.com"
                   className="p-3 rounded-xl bg-muted hover:bg-muted/80 transition-all duration-300 hover:scale-110"
                 >
                   <Mail className="h-6 w-6 text-muted-foreground hover:text-foreground" />
@@ -838,14 +838,6 @@ const Home = () => {
                     className="text-muted-foreground hover:text-foreground transition-colors"
                   >
                     Materials
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    Experiments
                   </a>
                 </li>
                 <li>
@@ -889,14 +881,6 @@ const Home = () => {
                     Community
                   </a>
                 </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    Support
-                  </a>
-                </li>
               </ul>
             </div>
           </div>
@@ -907,7 +891,7 @@ const Home = () => {
               <div className="flex items-center gap-2 text-muted-foreground">
                 <span>Made with</span>
                 <Heart className="h-4 w-4 text-red-500 fill-current" />
-                <span>by the HackersGlobe Team</span>
+                <span>by Nanda Krishnan V</span>
               </div>
               <div className="flex items-center gap-8 text-muted-foreground">
                 <a href="#" className="hover:text-foreground transition-colors">
@@ -916,7 +900,7 @@ const Home = () => {
                 <a href="#" className="hover:text-foreground transition-colors">
                   Terms of Service
                 </a>
-                <span>© 2024 HackersGlobe. All rights reserved.</span>
+                <span>© 2025 HackersGlobe. All rights reserved.</span>
               </div>
             </div>
           </div>
