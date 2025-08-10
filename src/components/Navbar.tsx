@@ -8,8 +8,9 @@ const Navbar = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <Link to="/" className="text-lg font-bold">
-          HackersGlobe
+        <Link to="/" className="flex items-center space-x-2 text-lg font-bold">
+          <img src="/logo.png" alt="HackersGlobe Logo" className="h-8 w-8" />
+          <span>HackersGlobe</span>
         </Link>
 
         <nav className="hidden md:flex items-center space-x-6">
