@@ -1,5 +1,5 @@
-#HackersGlobe
-This project is a web application designed to be a one-stop resource for cybersecurity commands, concepts, and experiments. It's built with React, TypeScript, and Vite, and styled with Tailwind CSS and shadcn/ui.
+HackersGlobe
+* This project is a web application designed to be a one-stop resource for cybersecurity commands, concepts, and experiments. It's built with React, TypeScript, and Vite, and styled with Tailwind CSS and shadcn/ui.
 
 ## Features
 
