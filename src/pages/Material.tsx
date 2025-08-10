@@ -258,7 +258,7 @@ const Material = () => {
   );
 
   const ToolsContent = () => {
-    const groupedCommands = commands.reduce((acc, command) => {
+    const groupedCommands = commands.reduce<Record<string, typeof commands>>( (acc, command) => {
       const { category } = command;
       if (!acc[category]) {
         acc[category] = [];
