@@ -30,6 +30,11 @@ import {
   BookOpen,
   Zap,
   TrendingUp,
+  Heart,
+  Mail,
+  Linkedin,
+  Github,
+  Twitter,
 } from "lucide-react";
 
 const Home = () => {
@@ -161,7 +166,9 @@ const Home = () => {
             <Card className="text-left hover:shadow-xl transition-all duration-300 border-l-4 border-l-red-500 group">
               <CardHeader>
                 <Target className="w-10 h-10 text-red-500 mb-3" />
-                <CardTitle className="text-red-600 text-xl">Red Team Path</CardTitle>
+                <CardTitle className="text-red-600 text-xl">
+                  Red Team Path
+                </CardTitle>
                 <CardDescription className="text-base">
                   Offensive Security & Penetration Testing
                 </CardDescription>
@@ -182,7 +189,9 @@ const Home = () => {
             <Card className="text-left hover:shadow-xl transition-all duration-300 border-l-4 border-l-blue-500 group">
               <CardHeader>
                 <Shield className="w-10 h-10 text-blue-500 mb-3" />
-                <CardTitle className="text-blue-600 text-xl">Blue Team Path</CardTitle>
+                <CardTitle className="text-blue-600 text-xl">
+                  Blue Team Path
+                </CardTitle>
                 <CardDescription className="text-base">
                   Defensive Security & Incident Response
                 </CardDescription>
@@ -202,7 +211,9 @@ const Home = () => {
             <Card className="text-left hover:shadow-xl transition-all duration-300 border-l-4 border-l-green-500 group">
               <CardHeader>
                 <Network className="w-10 h-10 text-green-500 mb-3" />
-                <CardTitle className="text-green-600 text-xl">Fundamentals</CardTitle>
+                <CardTitle className="text-green-600 text-xl">
+                  Fundamentals
+                </CardTitle>
                 <CardDescription className="text-base">
                   Core Networking & Security Concepts
                 </CardDescription>
@@ -259,12 +270,18 @@ const Home = () => {
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center justify-between mb-2">
-                          <h4 className="font-semibold text-base">{item.step}</h4>
+                          <h4 className="font-semibold text-base">
+                            {item.step}
+                          </h4>
                           <div className="flex items-center gap-2">
                             <Badge variant="secondary" className="text-xs">
                               {item.duration}
                             </Badge>
-                            <Badge className={`text-xs ${getDifficultyColor(item.difficulty)}`}>
+                            <Badge
+                              className={`text-xs ${getDifficultyColor(
+                                item.difficulty
+                              )}`}
+                            >
                               {item.difficulty}
                             </Badge>
                           </div>
@@ -307,12 +324,18 @@ const Home = () => {
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center justify-between mb-2">
-                          <h4 className="font-semibold text-base">{item.step}</h4>
+                          <h4 className="font-semibold text-base">
+                            {item.step}
+                          </h4>
                           <div className="flex items-center gap-2">
                             <Badge variant="secondary" className="text-xs">
                               {item.duration}
                             </Badge>
-                            <Badge className={`text-xs ${getDifficultyColor(item.difficulty)}`}>
+                            <Badge
+                              className={`text-xs ${getDifficultyColor(
+                                item.difficulty
+                              )}`}
+                            >
                               {item.difficulty}
                             </Badge>
                           </div>
@@ -404,7 +427,9 @@ const Home = () => {
               <CardHeader>
                 <Network className="w-10 h-10 text-green-600 mb-3" />
                 <CardTitle className="text-xl">MAC Address</CardTitle>
-                <CardDescription className="text-base">Hardware-level identification</CardDescription>
+                <CardDescription className="text-base">
+                  Hardware-level identification
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
@@ -431,7 +456,9 @@ const Home = () => {
               <CardHeader>
                 <ArrowRight className="w-10 h-10 text-purple-600 mb-3" />
                 <CardTitle className="text-xl">TCP Protocol</CardTitle>
-                <CardDescription className="text-base">Reliable data delivery</CardDescription>
+                <CardDescription className="text-base">
+                  Reliable data delivery
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
@@ -524,7 +551,10 @@ const Home = () => {
                       { layer: "2. Data Link", example: "Ethernet, WiFi, PPP" },
                       { layer: "1. Physical", example: "Cables, Radio, Fiber" },
                     ].map((item, index) => (
-                      <div key={index} className="bg-muted p-3 rounded-lg text-sm">
+                      <div
+                        key={index}
+                        className="bg-muted p-3 rounded-lg text-sm"
+                      >
                         <strong>{item.layer}:</strong> {item.example}
                       </div>
                     ))}
@@ -566,7 +596,10 @@ const Home = () => {
                         osi: "Layers 1-2",
                       },
                     ].map((item, index) => (
-                      <div key={index} className="bg-muted p-3 rounded-lg text-sm">
+                      <div
+                        key={index}
+                        className="bg-muted p-3 rounded-lg text-sm"
+                      >
                         <strong>{item.layer}:</strong> {item.example}
                         <div className="text-muted-foreground mt-1 text-xs">
                           Maps to OSI {item.osi}
@@ -589,7 +622,9 @@ const Home = () => {
                 <AccordionTrigger className="text-left">
                   <div className="flex items-center gap-3">
                     <Badge className="text-sm">Layer 1</Badge>
-                    <span className="text-lg">Physical Layer - The Foundation</span>
+                    <span className="text-lg">
+                      Physical Layer - The Foundation
+                    </span>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
@@ -609,7 +644,9 @@ const Home = () => {
                         </ul>
                       </div>
                       <div>
-                        <strong className="text-base">Security Concerns:</strong>
+                        <strong className="text-base">
+                          Security Concerns:
+                        </strong>
                         <ul className="list-disc pl-5 mt-2 text-muted-foreground space-y-1">
                           <li>Cable tapping</li>
                           <li>Physical device access</li>
@@ -627,7 +664,9 @@ const Home = () => {
                 <AccordionTrigger className="text-left">
                   <div className="flex items-center gap-3">
                     <Badge className="text-sm">Layer 2</Badge>
-                    <span className="text-lg">Data Link Layer - Local Network Communication</span>
+                    <span className="text-lg">
+                      Data Link Layer - Local Network Communication
+                    </span>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
@@ -685,7 +724,9 @@ const Home = () => {
                   <div className="w-16 h-16 bg-blue-100 dark:bg-blue-950 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                     <Eye className="w-8 h-8 text-blue-600" />
                   </div>
-                  <h3 className="font-semibold mb-3 text-xl">Explore Experiments</h3>
+                  <h3 className="font-semibold mb-3 text-xl">
+                    Explore Experiments
+                  </h3>
                   <p className="text-muted-foreground leading-relaxed">
                     Try hands-on cybersecurity experiments and simulations
                   </p>
@@ -699,7 +740,9 @@ const Home = () => {
                   <div className="w-16 h-16 bg-green-100 dark:bg-green-950 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                     <Users className="w-8 h-8 text-green-600" />
                   </div>
-                  <h3 className="font-semibold mb-3 text-xl">Study Materials</h3>
+                  <h3 className="font-semibold mb-3 text-xl">
+                    Study Materials
+                  </h3>
                   <p className="text-muted-foreground leading-relaxed">
                     Access comprehensive guides and reference materials
                   </p>
@@ -713,7 +756,9 @@ const Home = () => {
                   <div className="w-16 h-16 bg-purple-100 dark:bg-purple-950 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                     <Lock className="w-8 h-8 text-purple-600" />
                   </div>
-                  <h3 className="font-semibold mb-3 text-xl">Practice Commands</h3>
+                  <h3 className="font-semibold mb-3 text-xl">
+                    Practice Commands
+                  </h3>
                   <p className="text-muted-foreground leading-relaxed">
                     Learn essential cybersecurity tools and commands
                   </p>
@@ -723,6 +768,160 @@ const Home = () => {
           </div>
         </div>
       </section>
+      <footer className="bg-background border-t border-border">
+        <div className="container mx-auto px-4 py-20">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+            {/* Brand Section */}
+            <div className="md:col-span-2">
+              <div className="flex items-center gap-3 mb-6">
+                <Shield className="h-10 w-10 text-blue-600" />
+                <span className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  HackersGlobe
+                </span>
+              </div>
+              <p className="text-muted-foreground mb-8 max-w-md leading-relaxed text-lg">
+                Empowering the next generation of cybersecurity professionals
+                through comprehensive learning resources, hands-on practice, and
+                expert guidance.
+              </p>
+              <div className="flex items-center gap-4">
+                <a
+                  href="https://github.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-xl bg-muted hover:bg-muted/80 transition-all duration-300 hover:scale-110"
+                >
+                  <Github className="h-6 w-6 text-muted-foreground hover:text-foreground" />
+                </a>
+                <a
+                  href="https://twitter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-xl bg-muted hover:bg-muted/80 transition-all duration-300 hover:scale-110"
+                >
+                  <Twitter className="h-6 w-6 text-muted-foreground hover:text-foreground" />
+                </a>
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-xl bg-muted hover:bg-muted/80 transition-all duration-300 hover:scale-110"
+                >
+                  <Linkedin className="h-6 w-6 text-muted-foreground hover:text-foreground" />
+                </a>
+                <a
+                  href="mailto:contact@hackersglobe.com"
+                  className="p-3 rounded-xl bg-muted hover:bg-muted/80 transition-all duration-300 hover:scale-110"
+                >
+                  <Mail className="h-6 w-6 text-muted-foreground hover:text-foreground" />
+                </a>
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h4 className="font-semibold text-foreground mb-6 text-lg">
+                Quick Links
+              </h4>
+              <ul className="space-y-3">
+                <li>
+                  <a
+                    href="#"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Materials
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Experiments
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Roadmaps
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Resources */}
+            <div>
+              <h4 className="font-semibold text-foreground mb-6 text-lg">
+                Resources
+              </h4>
+              <ul className="space-y-3">
+                <li>
+                  <a
+                    href="#"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Practice Labs
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Certifications
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Community
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Support
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Bottom Section */}
+          <div className="border-t border-border mt-16 pt-8">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <span>Made with</span>
+                <Heart className="h-4 w-4 text-red-500 fill-current" />
+                <span>by the HackersGlobe Team</span>
+              </div>
+              <div className="flex items-center gap-8 text-muted-foreground">
+                <a href="#" className="hover:text-foreground transition-colors">
+                  Privacy Policy
+                </a>
+                <a href="#" className="hover:text-foreground transition-colors">
+                  Terms of Service
+                </a>
+                <span>© 2024 HackersGlobe. All rights reserved.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
