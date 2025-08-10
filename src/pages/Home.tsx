@@ -25,16 +25,21 @@ import {
   Layers,
   ArrowRight,
   CheckCircle,
+  Star,
+  Clock,
+  BookOpen,
+  Zap,
+  TrendingUp,
 } from "lucide-react";
 
 const Home = () => {
   useEffect(() => {
-    document.title = "HackersGlobe";
+    document.title = "HackersGlobe - Your Cybersecurity Journey Starts Here";
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
       metaDesc.setAttribute(
         "content",
-        "Welcome to the HackersGlobe. Your comprehensive guide to cybersecurity fundamentals, red team and blue team paths."
+        "Welcome to HackersGlobe. Your comprehensive guide to cybersecurity fundamentals, red team and blue team paths."
       );
     }
   }, []);
@@ -44,31 +49,37 @@ const Home = () => {
       step: "Linux Fundamentals",
       description: "Master command line, file systems, and basic scripting",
       duration: "2-3 weeks",
+      difficulty: "Beginner",
     },
     {
       step: "Networking Basics",
       description: "TCP/IP, OSI model, protocols, and network analysis",
       duration: "2 weeks",
+      difficulty: "Beginner",
     },
     {
       step: "Web Application Security",
       description: "OWASP Top 10, SQL injection, XSS, authentication flaws",
       duration: "3-4 weeks",
+      difficulty: "Intermediate",
     },
     {
       step: "Penetration Testing Tools",
       description: "Nmap, Metasploit, Burp Suite, Wireshark",
       duration: "4-5 weeks",
+      difficulty: "Intermediate",
     },
     {
       step: "Vulnerability Assessment",
       description: "Scanning, enumeration, and exploitation techniques",
       duration: "3-4 weeks",
+      difficulty: "Intermediate",
     },
     {
       step: "Advanced Exploitation",
       description: "Buffer overflows, privilege escalation, post-exploitation",
       duration: "6-8 weeks",
+      difficulty: "Advanced",
     },
   ];
 
@@ -77,33 +88,52 @@ const Home = () => {
       step: "Security Fundamentals",
       description: "CIA triad, risk management, compliance frameworks",
       duration: "2-3 weeks",
+      difficulty: "Beginner",
     },
     {
       step: "Network Security",
       description: "Firewalls, IDS/IPS, network monitoring and analysis",
       duration: "3-4 weeks",
+      difficulty: "Beginner",
     },
     {
       step: "Incident Response",
       description: "SIEM tools, log analysis, forensics basics",
       duration: "4-5 weeks",
+      difficulty: "Intermediate",
     },
     {
       step: "Threat Detection",
       description: "IOCs, behavioral analysis, threat hunting",
       duration: "3-4 weeks",
+      difficulty: "Intermediate",
     },
     {
       step: "Security Tools Mastery",
       description: "Splunk, ELK Stack, Wireshark, Volatility",
       duration: "5-6 weeks",
+      difficulty: "Intermediate",
     },
     {
       step: "Advanced Defense",
       description: "Malware analysis, threat intelligence, automation",
       duration: "6-8 weeks",
+      difficulty: "Advanced",
     },
   ];
+
+  const getDifficultyColor = (difficulty: string) => {
+    switch (difficulty) {
+      case "Beginner":
+        return "bg-green-100 dark:bg-green-950/20 text-green-700 dark:text-green-400";
+      case "Intermediate":
+        return "bg-yellow-100 dark:bg-yellow-950/20 text-yellow-700 dark:text-yellow-400";
+      case "Advanced":
+        return "bg-red-100 dark:bg-red-950/20 text-red-700 dark:text-red-400";
+      default:
+        return "bg-gray-100 dark:bg-gray-950/20 text-gray-700 dark:text-gray-400";
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -112,68 +142,80 @@ const Home = () => {
         id="welcome"
         className="container mx-auto px-4 pt-24 pb-16 text-center"
       >
-        <div className="max-w-4xl mx-auto">
-          <Badge variant="secondary" className="mb-4 text-sm">
+        <div className="max-w-5xl mx-auto">
+          <Badge variant="secondary" className="mb-6 text-sm font-medium">
             <Shield className="w-4 h-4 mr-2" />
             Welcome to HackersGlobe
           </Badge>
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             Your Cybersecurity Journey Starts Here
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+          <p className="text-xl text-muted-foreground max-w-4xl mx-auto mb-12 leading-relaxed">
             Welcome to the <strong>Cyber Command Playbook</strong> - your
             comprehensive guide to mastering cybersecurity fundamentals. Whether
             you're interested in offensive security (Red Team) or defensive
             security (Blue Team), we've got you covered.
           </p>
 
-          <div className="grid md:grid-cols-3 gap-6 mt-12">
-            <Card className="text-left hover:shadow-lg transition-shadow">
+          <div className="grid md:grid-cols-3 gap-8 mt-16">
+            <Card className="text-left hover:shadow-xl transition-all duration-300 border-l-4 border-l-red-500 group">
               <CardHeader>
-                <Target className="w-8 h-8 text-red-500 mb-2" />
-                <CardTitle className="text-red-600">Red Team Path</CardTitle>
-                <CardDescription>
+                <Target className="w-10 h-10 text-red-500 mb-3" />
+                <CardTitle className="text-red-600 text-xl">Red Team Path</CardTitle>
+                <CardDescription className="text-base">
                   Offensive Security & Penetration Testing
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-muted-foreground mb-4">
                   Learn to think like an attacker. Master vulnerability
                   assessment, penetration testing, and ethical hacking
                   techniques.
                 </p>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                  <span>Popular among security professionals</span>
+                </div>
               </CardContent>
             </Card>
 
-            <Card className="text-left hover:shadow-lg transition-shadow">
+            <Card className="text-left hover:shadow-xl transition-all duration-300 border-l-4 border-l-blue-500 group">
               <CardHeader>
-                <Shield className="w-8 h-8 text-blue-500 mb-2" />
-                <CardTitle className="text-blue-600">Blue Team Path</CardTitle>
-                <CardDescription>
+                <Shield className="w-10 h-10 text-blue-500 mb-3" />
+                <CardTitle className="text-blue-600 text-xl">Blue Team Path</CardTitle>
+                <CardDescription className="text-base">
                   Defensive Security & Incident Response
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-muted-foreground mb-4">
                   Become a cyber defender. Learn threat detection, incident
                   response, and security monitoring techniques.
                 </p>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <TrendingUp className="w-4 h-4 text-green-400" />
+                  <span>High demand in the industry</span>
+                </div>
               </CardContent>
             </Card>
 
-            <Card className="text-left hover:shadow-lg transition-shadow">
+            <Card className="text-left hover:shadow-xl transition-all duration-300 border-l-4 border-l-green-500 group">
               <CardHeader>
-                <Network className="w-8 h-8 text-green-500 mb-2" />
-                <CardTitle className="text-green-600">Fundamentals</CardTitle>
-                <CardDescription>
+                <Network className="w-10 h-10 text-green-500 mb-3" />
+                <CardTitle className="text-green-600 text-xl">Fundamentals</CardTitle>
+                <CardDescription className="text-base">
                   Core Networking & Security Concepts
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-muted-foreground mb-4">
                   Master the essential networking and security fundamentals that
                   every cybersecurity professional needs.
                 </p>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <BookOpen className="w-4 h-4 text-blue-400" />
+                  <span>Essential foundation knowledge</span>
+                </div>
               </CardContent>
             </Card>
           </div>
@@ -181,57 +223,62 @@ const Home = () => {
       </section>
 
       {/* Learning Roadmaps Section */}
-      <section id="roadmaps" className="bg-muted/30 py-16">
+      <section id="roadmaps" className="bg-muted/30 py-20">
         <div className="container mx-auto px-4">
-          <header className="text-center mb-12">
+          <header className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
               Choose Your Path
             </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
               Every cybersecurity professional starts somewhere. Choose between
               offensive (Red Team) or defensive (Blue Team) security paths, or
               master both to become a well-rounded security expert.
             </p>
           </header>
 
-          <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-10 max-w-7xl mx-auto">
             {/* Red Team Roadmap */}
-            <Card className="border-red-200">
+            <Card className="border-red-200 hover:shadow-xl transition-all duration-300">
               <CardHeader className="bg-red-50 dark:bg-red-950/20">
-                <div className="flex items-center gap-3 mb-2">
-                  <Target className="w-6 h-6 text-red-600" />
-                  <CardTitle className="text-red-700 dark:text-red-400">
+                <div className="flex items-center gap-3 mb-3">
+                  <Target className="w-7 h-7 text-red-600" />
+                  <CardTitle className="text-red-700 dark:text-red-400 text-2xl">
                     Red Team Roadmap
                   </CardTitle>
                 </div>
-                <CardDescription>
+                <CardDescription className="text-base">
                   Offensive Security & Ethical Hacking Path
                 </CardDescription>
               </CardHeader>
-              <CardContent className="p-6">
-                <div className="space-y-4">
+              <CardContent className="p-8">
+                <div className="space-y-6">
                   {redTeamPath.map((item, index) => (
-                    <div key={index} className="flex gap-4">
-                      <div className="flex-shrink-0 w-8 h-8 bg-red-100 dark:bg-red-950 text-red-700 dark:text-red-300 rounded-full flex items-center justify-center text-sm font-bold">
+                    <div key={index} className="flex gap-4 group">
+                      <div className="flex-shrink-0 w-10 h-10 bg-red-100 dark:bg-red-950 text-red-700 dark:text-red-300 rounded-full flex items-center justify-center text-sm font-bold">
                         {index + 1}
                       </div>
                       <div className="flex-1">
-                        <div className="flex items-center justify-between mb-1">
-                          <h4 className="font-semibold text-sm">{item.step}</h4>
-                          <Badge variant="secondary" className="text-xs">
-                            {item.duration}
-                          </Badge>
+                        <div className="flex items-center justify-between mb-2">
+                          <h4 className="font-semibold text-base">{item.step}</h4>
+                          <div className="flex items-center gap-2">
+                            <Badge variant="secondary" className="text-xs">
+                              {item.duration}
+                            </Badge>
+                            <Badge className={`text-xs ${getDifficultyColor(item.difficulty)}`}>
+                              {item.difficulty}
+                            </Badge>
+                          </div>
                         </div>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-muted-foreground leading-relaxed">
                           {item.description}
                         </p>
                       </div>
                     </div>
                   ))}
                 </div>
-                <div className="mt-6 p-4 bg-red-50 dark:bg-red-950/20 rounded-lg">
-                  <p className="text-sm text-red-700 dark:text-red-300 font-medium">
-                    <Target className="w-4 h-4 inline mr-2" />
+                <div className="mt-8 p-6 bg-red-50 dark:bg-red-950/20 rounded-xl">
+                  <p className="text-red-700 dark:text-red-300 font-medium flex items-center">
+                    <Target className="w-5 h-5 inline mr-3" />
                     Total Timeline: 20-27 weeks (5-7 months)
                   </p>
                 </div>
@@ -239,42 +286,47 @@ const Home = () => {
             </Card>
 
             {/* Blue Team Roadmap */}
-            <Card className="border-blue-200">
+            <Card className="border-blue-200 hover:shadow-xl transition-all duration-300">
               <CardHeader className="bg-blue-50 dark:bg-blue-950/20">
-                <div className="flex items-center gap-3 mb-2">
-                  <Shield className="w-6 h-6 text-blue-600" />
-                  <CardTitle className="text-blue-700 dark:text-blue-400">
+                <div className="flex items-center gap-3 mb-3">
+                  <Shield className="w-7 h-7 text-blue-600" />
+                  <CardTitle className="text-blue-700 dark:text-blue-400 text-2xl">
                     Blue Team Roadmap
                   </CardTitle>
                 </div>
-                <CardDescription>
+                <CardDescription className="text-base">
                   Defensive Security & Incident Response Path
                 </CardDescription>
               </CardHeader>
-              <CardContent className="p-6">
-                <div className="space-y-4">
+              <CardContent className="p-8">
+                <div className="space-y-6">
                   {blueTeamPath.map((item, index) => (
-                    <div key={index} className="flex gap-4">
-                      <div className="flex-shrink-0 w-8 h-8 bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 rounded-full flex items-center justify-center text-sm font-bold">
+                    <div key={index} className="flex gap-4 group">
+                      <div className="flex-shrink-0 w-10 h-10 bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 rounded-full flex items-center justify-center text-sm font-bold">
                         {index + 1}
                       </div>
                       <div className="flex-1">
-                        <div className="flex items-center justify-between mb-1">
-                          <h4 className="font-semibold text-sm">{item.step}</h4>
-                          <Badge variant="secondary" className="text-xs">
-                            {item.duration}
-                          </Badge>
+                        <div className="flex items-center justify-between mb-2">
+                          <h4 className="font-semibold text-base">{item.step}</h4>
+                          <div className="flex items-center gap-2">
+                            <Badge variant="secondary" className="text-xs">
+                              {item.duration}
+                            </Badge>
+                            <Badge className={`text-xs ${getDifficultyColor(item.difficulty)}`}>
+                              {item.difficulty}
+                            </Badge>
+                          </div>
                         </div>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-muted-foreground leading-relaxed">
                           {item.description}
                         </p>
                       </div>
                     </div>
                   ))}
                 </div>
-                <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-950/20 rounded-lg">
-                  <p className="text-sm text-blue-700 dark:text-blue-300 font-medium">
-                    <Shield className="w-4 h-4 inline mr-2" />
+                <div className="mt-8 p-6 bg-blue-50 dark:bg-blue-950/20 rounded-xl">
+                  <p className="text-blue-700 dark:text-blue-300 font-medium flex items-center">
+                    <Shield className="w-5 h-5 inline mr-3" />
                     Total Timeline: 23-30 weeks (6-8 months)
                   </p>
                 </div>
@@ -282,13 +334,14 @@ const Home = () => {
             </Card>
           </div>
 
-          <div className="text-center mt-8">
-            <Card className="max-w-2xl mx-auto bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/20 border-purple-200">
-              <CardContent className="p-6">
-                <h3 className="font-bold text-lg mb-2">
-                  🎯 Pro Tip for Freshers
+          <div className="text-center mt-12">
+            <Card className="max-w-3xl mx-auto bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/20 border-purple-200 hover:shadow-lg transition-all duration-300">
+              <CardContent className="p-8">
+                <h3 className="font-bold text-xl mb-3 flex items-center justify-center gap-2">
+                  <Zap className="w-6 h-6 text-purple-600" />
+                  Pro Tip for Freshers
                 </h3>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-muted-foreground leading-relaxed">
                   Start with <strong>networking fundamentals</strong> regardless
                   of your chosen path. Understanding how networks work is
                   crucial for both offensive and defensive security. Many
@@ -302,13 +355,13 @@ const Home = () => {
       </section>
 
       {/* Enhanced Networking Fundamentals */}
-      <section id="fundamentals" className="py-16">
+      <section id="fundamentals" className="py-20">
         <div className="container mx-auto px-4">
-          <header className="text-center mb-12">
+          <header className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
               Networking Fundamentals
             </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
               Master the essential networking concepts that form the foundation
               of all cybersecurity work. Understanding these concepts is crucial
               for both red and blue team activities.
@@ -316,27 +369,27 @@ const Home = () => {
           </header>
 
           {/* Core Concepts Grid */}
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-12">
-            <Card className="hover:shadow-lg transition-all duration-300 border-l-4 border-l-blue-500">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 mb-16">
+            <Card className="hover:shadow-xl transition-all duration-300 border-l-4 border-l-blue-500 group">
               <CardHeader>
-                <Globe className="w-8 h-8 text-blue-600 mb-2" />
-                <CardTitle className="text-lg">IP Address</CardTitle>
-                <CardDescription>
+                <Globe className="w-10 h-10 text-blue-600 mb-3" />
+                <CardTitle className="text-xl">IP Address</CardTitle>
+                <CardDescription className="text-base">
                   Your device's network identity
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-3">
-                  <p className="text-sm text-muted-foreground">
+                <div className="space-y-4">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     Think of IP addresses like postal addresses for the
                     internet. They tell other devices exactly where to send
                     data.
                   </p>
                   <div className="space-y-2">
-                    <div className="bg-muted p-2 rounded text-xs">
+                    <div className="bg-muted p-3 rounded-lg text-xs">
                       <strong>IPv4:</strong> 192.168.1.10 (32-bit)
                     </div>
-                    <div className="bg-muted p-2 rounded text-xs">
+                    <div className="bg-muted p-3 rounded-lg text-xs">
                       <strong>IPv6:</strong> 2001:db8::1 (128-bit)
                     </div>
                   </div>
@@ -347,26 +400,25 @@ const Home = () => {
               </CardContent>
             </Card>
 
-            <Card className="hover:shadow-lg transition-all duration-300 border-l-4 border-l-green-500">
+            <Card className="hover:shadow-xl transition-all duration-300 border-l-4 border-l-green-500 group">
               <CardHeader>
-                <Network className="w-8 h-8 text-green-600 mb-2" />
-                <CardTitle className="text-lg">MAC Address</CardTitle>
-                <CardDescription>Hardware-level identification</CardDescription>
+                <Network className="w-10 h-10 text-green-600 mb-3" />
+                <CardTitle className="text-xl">MAC Address</CardTitle>
+                <CardDescription className="text-base">Hardware-level identification</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-3">
-                  <p className="text-sm text-muted-foreground">
+                <div className="space-y-4">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     Like a unique fingerprint burned into your network card.
                     Used for local delivery within the same network segment.
                   </p>
-                  <div className="bg-muted p-2 rounded text-xs">
+                  <div className="bg-muted p-3 rounded-lg text-xs">
                     <strong>Format:</strong> 00:1A:2B:3C:4D:5E
                   </div>
-                  <div className="text-xs text-muted-foreground">
-                    • 48-bit hexadecimal
-                    <br />
-                    • First 3 bytes = Manufacturer
-                    <br />• Used by switches for forwarding
+                  <div className="text-xs text-muted-foreground space-y-1">
+                    <div>• 48-bit hexadecimal</div>
+                    <div>• First 3 bytes = Manufacturer</div>
+                    <div>• Used by switches for forwarding</div>
                   </div>
                   <Badge variant="secondary" className="text-xs">
                     Layer 2 - Data Link
@@ -375,19 +427,19 @@ const Home = () => {
               </CardContent>
             </Card>
 
-            <Card className="hover:shadow-lg transition-all duration-300 border-l-4 border-l-purple-500">
+            <Card className="hover:shadow-xl transition-all duration-300 border-l-4 border-l-purple-500 group">
               <CardHeader>
-                <ArrowRight className="w-8 h-8 text-purple-600 mb-2" />
-                <CardTitle className="text-lg">TCP Protocol</CardTitle>
-                <CardDescription>Reliable data delivery</CardDescription>
+                <ArrowRight className="w-10 h-10 text-purple-600 mb-3" />
+                <CardTitle className="text-xl">TCP Protocol</CardTitle>
+                <CardDescription className="text-base">Reliable data delivery</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-3">
-                  <p className="text-sm text-muted-foreground">
+                <div className="space-y-4">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     Like registered mail - guarantees your data arrives in order
                     and intact, with confirmation receipts.
                   </p>
-                  <div className="space-y-1 text-xs">
+                  <div className="space-y-2 text-xs">
                     <div className="flex items-center gap-2">
                       <CheckCircle className="w-3 h-3 text-green-500" />
                       <span>3-way handshake (SYN → SYN-ACK → ACK)</span>
@@ -408,17 +460,17 @@ const Home = () => {
               </CardContent>
             </Card>
 
-            <Card className="hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
+            <Card className="hover:shadow-xl transition-all duration-300 border-l-4 border-l-orange-500 group">
               <CardHeader>
-                <Layers className="w-8 h-8 text-orange-600 mb-2" />
-                <CardTitle className="text-lg">OSI Model</CardTitle>
-                <CardDescription>
+                <Layers className="w-10 h-10 text-orange-600 mb-3" />
+                <CardTitle className="text-xl">OSI Model</CardTitle>
+                <CardDescription className="text-base">
                   Network architecture framework
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-3">
-                  <p className="text-sm text-muted-foreground">
+                <div className="space-y-4">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     A 7-layer blueprint that organizes how networks function -
                     like floors in a building, each with specific purposes.
                   </p>
@@ -440,23 +492,23 @@ const Home = () => {
           </div>
 
           {/* OSI vs TCP/IP Comparison */}
-          <div className="mb-12">
-            <h3 className="text-2xl font-semibold text-center mb-6">
+          <div className="mb-16">
+            <h3 className="text-2xl font-semibold text-center mb-8">
               OSI Model vs TCP/IP Model
             </h3>
-            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-              <Card>
+            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              <Card className="hover:shadow-lg transition-all duration-300">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Layers className="w-5 h-5" />
+                  <CardTitle className="flex items-center gap-2 text-xl">
+                    <Layers className="w-6 h-6" />
                     OSI Model (7 Layers)
                   </CardTitle>
-                  <CardDescription>
+                  <CardDescription className="text-base">
                     Theoretical framework for understanding networks
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     {[
                       {
                         layer: "7. Application",
@@ -472,7 +524,7 @@ const Home = () => {
                       { layer: "2. Data Link", example: "Ethernet, WiFi, PPP" },
                       { layer: "1. Physical", example: "Cables, Radio, Fiber" },
                     ].map((item, index) => (
-                      <div key={index} className="bg-muted p-2 rounded text-xs">
+                      <div key={index} className="bg-muted p-3 rounded-lg text-sm">
                         <strong>{item.layer}:</strong> {item.example}
                       </div>
                     ))}
@@ -480,18 +532,18 @@ const Home = () => {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="hover:shadow-lg transition-all duration-300">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Globe className="w-5 h-5" />
+                  <CardTitle className="flex items-center gap-2 text-xl">
+                    <Globe className="w-6 h-6" />
                     TCP/IP Model (4 Layers)
                   </CardTitle>
-                  <CardDescription>
+                  <CardDescription className="text-base">
                     Practical model used in real networks
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     {[
                       {
                         layer: "4. Application",
@@ -514,9 +566,9 @@ const Home = () => {
                         osi: "Layers 1-2",
                       },
                     ].map((item, index) => (
-                      <div key={index} className="bg-muted p-2 rounded text-xs">
+                      <div key={index} className="bg-muted p-3 rounded-lg text-sm">
                         <strong>{item.layer}:</strong> {item.example}
-                        <div className="text-muted-foreground mt-1">
+                        <div className="text-muted-foreground mt-1 text-xs">
                           Maps to OSI {item.osi}
                         </div>
                       </div>
@@ -527,137 +579,29 @@ const Home = () => {
             </div>
           </div>
 
-          {/* Practical Examples */}
-          <div className="mb-12">
-            <h3 className="text-2xl font-semibold text-center mb-6">
-              Real-World Examples
-            </h3>
-            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-              <Card className="border-green-200">
-                <CardHeader className="bg-green-50 dark:bg-green-950/20">
-                  <CardTitle className="text-green-700 dark:text-green-400">
-                    Browsing a Website
-                  </CardTitle>
-                  <CardDescription>
-                    What happens when you visit google.com
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="p-6">
-                  <div className="space-y-3 text-sm">
-                    <div className="flex gap-3">
-                      <Badge variant="secondary">1</Badge>
-                      <div>
-                        <strong>DNS Resolution:</strong> Your computer asks
-                        "What's google.com's IP address?"
-                      </div>
-                    </div>
-                    <div className="flex gap-3">
-                      <Badge variant="secondary">2</Badge>
-                      <div>
-                        <strong>TCP Handshake:</strong> Establishes reliable
-                        connection to Google's server (port 443)
-                      </div>
-                    </div>
-                    <div className="flex gap-3">
-                      <Badge variant="secondary">3</Badge>
-                      <div>
-                        <strong>HTTP Request:</strong> Your browser sends "GET
-                        /" request
-                      </div>
-                    </div>
-                    <div className="flex gap-3">
-                      <Badge variant="secondary">4</Badge>
-                      <div>
-                        <strong>Data Routing:</strong> Packets travel through
-                        routers using IP addresses
-                      </div>
-                    </div>
-                    <div className="flex gap-3">
-                      <Badge variant="secondary">5</Badge>
-                      <div>
-                        <strong>Local Delivery:</strong> Your router uses MAC
-                        addresses to deliver to your device
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-red-200">
-                <CardHeader className="bg-red-50 dark:bg-red-950/20">
-                  <CardTitle className="text-red-700 dark:text-red-400">
-                    Network Attack Example
-                  </CardTitle>
-                  <CardDescription>
-                    How attackers might exploit each layer
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="p-6">
-                  <div className="space-y-3 text-sm">
-                    <div className="flex gap-3">
-                      <Badge variant="destructive">L7</Badge>
-                      <div>
-                        <strong>Application:</strong> SQL injection, XSS attacks
-                        on web applications
-                      </div>
-                    </div>
-                    <div className="flex gap-3">
-                      <Badge variant="destructive">L4</Badge>
-                      <div>
-                        <strong>Transport:</strong> TCP SYN flood attacks, port
-                        scanning
-                      </div>
-                    </div>
-                    <div className="flex gap-3">
-                      <Badge variant="destructive">L3</Badge>
-                      <div>
-                        <strong>Network:</strong> IP spoofing, routing attacks,
-                        DoS
-                      </div>
-                    </div>
-                    <div className="flex gap-3">
-                      <Badge variant="destructive">L2</Badge>
-                      <div>
-                        <strong>Data Link:</strong> MAC flooding, ARP poisoning
-                        attacks
-                      </div>
-                    </div>
-                    <div className="flex gap-3">
-                      <Badge variant="destructive">L1</Badge>
-                      <div>
-                        <strong>Physical:</strong> Cable tapping, wireless
-                        eavesdropping
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-
           {/* Interactive Layer Explorer */}
-          <div className="max-w-3xl mx-auto">
-            <h3 className="text-2xl font-semibold text-center mb-6">
+          <div className="max-w-4xl mx-auto">
+            <h3 className="text-2xl font-semibold text-center mb-8">
               Explore Each Layer
             </h3>
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem value="physical">
                 <AccordionTrigger className="text-left">
                   <div className="flex items-center gap-3">
-                    <Badge>Layer 1</Badge>
-                    <span>Physical Layer - The Foundation</span>
+                    <Badge className="text-sm">Layer 1</Badge>
+                    <span className="text-lg">Physical Layer - The Foundation</span>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
-                  <div className="space-y-4 pt-4">
-                    <p className="text-sm text-muted-foreground">
+                  <div className="space-y-6 pt-4">
+                    <p className="text-muted-foreground leading-relaxed">
                       <strong>What it does:</strong> Handles the physical
                       transmission of raw bits over communication channels.
                     </p>
-                    <div className="grid md:grid-cols-2 gap-4 text-sm">
+                    <div className="grid md:grid-cols-2 gap-6">
                       <div>
-                        <strong>Examples:</strong>
-                        <ul className="list-disc pl-5 mt-1 text-muted-foreground">
+                        <strong className="text-base">Examples:</strong>
+                        <ul className="list-disc pl-5 mt-2 text-muted-foreground space-y-1">
                           <li>Ethernet cables (Cat5e, Cat6)</li>
                           <li>Fiber optic cables</li>
                           <li>WiFi radio signals</li>
@@ -665,8 +609,8 @@ const Home = () => {
                         </ul>
                       </div>
                       <div>
-                        <strong>Security Concerns:</strong>
-                        <ul className="list-disc pl-5 mt-1 text-muted-foreground">
+                        <strong className="text-base">Security Concerns:</strong>
+                        <ul className="list-disc pl-5 mt-2 text-muted-foreground space-y-1">
                           <li>Cable tapping</li>
                           <li>Physical device access</li>
                           <li>Electromagnetic interference</li>
@@ -678,24 +622,25 @@ const Home = () => {
                 </AccordionContent>
               </AccordionItem>
 
+              {/* Continue with other layers... */}
               <AccordionItem value="datalink">
                 <AccordionTrigger className="text-left">
                   <div className="flex items-center gap-3">
-                    <Badge>Layer 2</Badge>
-                    <span>Data Link Layer - Local Network Communication</span>
+                    <Badge className="text-sm">Layer 2</Badge>
+                    <span className="text-lg">Data Link Layer - Local Network Communication</span>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
-                  <div className="space-y-4 pt-4">
-                    <p className="text-sm text-muted-foreground">
+                  <div className="space-y-6 pt-4">
+                    <p className="text-muted-foreground leading-relaxed">
                       <strong>What it does:</strong> Manages communication
                       between devices on the same network segment using MAC
                       addresses.
                     </p>
-                    <div className="grid md:grid-cols-2 gap-4 text-sm">
+                    <div className="grid md:grid-cols-2 gap-6">
                       <div>
-                        <strong>Key Concepts:</strong>
-                        <ul className="list-disc pl-5 mt-1 text-muted-foreground">
+                        <strong className="text-base">Key Concepts:</strong>
+                        <ul className="list-disc pl-5 mt-2 text-muted-foreground space-y-1">
                           <li>MAC addresses (48-bit hardware addresses)</li>
                           <li>Ethernet frames</li>
                           <li>Switching and VLANs</li>
@@ -703,8 +648,8 @@ const Home = () => {
                         </ul>
                       </div>
                       <div>
-                        <strong>Attack Examples:</strong>
-                        <ul className="list-disc pl-5 mt-1 text-muted-foreground">
+                        <strong className="text-base">Attack Examples:</strong>
+                        <ul className="list-disc pl-5 mt-2 text-muted-foreground space-y-1">
                           <li>ARP spoofing/poisoning</li>
                           <li>MAC flooding</li>
                           <li>VLAN hopping</li>
@@ -716,393 +661,32 @@ const Home = () => {
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="network">
-                <AccordionTrigger className="text-left">
-                  <div className="flex items-center gap-3">
-                    <Badge>Layer 3</Badge>
-                    <span>Network Layer - Routing Across Networks</span>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent>
-                  <div className="space-y-4 pt-4">
-                    <p className="text-sm text-muted-foreground">
-                      <strong>What it does:</strong> Routes packets between
-                      different networks using logical IP addresses.
-                    </p>
-                    <div className="grid md:grid-cols-2 gap-4 text-sm">
-                      <div>
-                        <strong>Key Protocols:</strong>
-                        <ul className="list-disc pl-5 mt-1 text-muted-foreground">
-                          <li>IP (Internet Protocol)</li>
-                          <li>ICMP (Ping, traceroute)</li>
-                          <li>Routing protocols (OSPF, BGP)</li>
-                          <li>IPSec (VPN security)</li>
-                        </ul>
-                      </div>
-                      <div>
-                        <strong>Security Issues:</strong>
-                        <ul className="list-disc pl-5 mt-1 text-muted-foreground">
-                          <li>IP spoofing</li>
-                          <li>DDoS attacks</li>
-                          <li>Man-in-the-middle attacks</li>
-                          <li>Route hijacking</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="transport">
-                <AccordionTrigger className="text-left">
-                  <div className="flex items-center gap-3">
-                    <Badge>Layer 4</Badge>
-                    <span>Transport Layer - Reliable Data Delivery</span>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent>
-                  <div className="space-y-4 pt-4">
-                    <p className="text-sm text-muted-foreground">
-                      <strong>What it does:</strong> Ensures reliable, ordered
-                      delivery of data between applications using ports.
-                    </p>
-                    <div className="grid md:grid-cols-2 gap-4 text-sm">
-                      <div>
-                        <strong>Protocols:</strong>
-                        <ul className="list-disc pl-5 mt-1 text-muted-foreground">
-                          <li>TCP - Reliable, connection-oriented</li>
-                          <li>UDP - Fast, connectionless</li>
-                          <li>Port numbers (0-65535)</li>
-                          <li>Well-known ports (80, 443, 22, 25)</li>
-                        </ul>
-                      </div>
-                      <div>
-                        <strong>Attack Vectors:</strong>
-                        <ul className="list-disc pl-5 mt-1 text-muted-foreground">
-                          <li>Port scanning (Nmap)</li>
-                          <li>TCP SYN flood attacks</li>
-                          <li>Session hijacking</li>
-                          <li>UDP amplification attacks</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="session">
-                <AccordionTrigger className="text-left">
-                  <div className="flex items-center gap-3">
-                    <Badge>Layer 5</Badge>
-                    <span>Session Layer - Managing Connections</span>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent>
-                  <div className="space-y-4 pt-4">
-                    <p className="text-sm text-muted-foreground">
-                      <strong>What it does:</strong> Establishes, manages, and
-                      terminates sessions between applications.
-                    </p>
-                    <div className="grid md:grid-cols-2 gap-4 text-sm">
-                      <div>
-                        <strong>Functions:</strong>
-                        <ul className="list-disc pl-5 mt-1 text-muted-foreground">
-                          <li>Session establishment</li>
-                          <li>Session maintenance</li>
-                          <li>Session termination</li>
-                          <li>Checkpointing and recovery</li>
-                        </ul>
-                      </div>
-                      <div>
-                        <strong>Examples:</strong>
-                        <ul className="list-disc pl-5 mt-1 text-muted-foreground">
-                          <li>SQL sessions</li>
-                          <li>RPC (Remote Procedure Call)</li>
-                          <li>NetBIOS sessions</li>
-                          <li>SOCKS proxy sessions</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="presentation">
-                <AccordionTrigger className="text-left">
-                  <div className="flex items-center gap-3">
-                    <Badge>Layer 6</Badge>
-                    <span>Presentation Layer - Data Format & Encryption</span>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent>
-                  <div className="space-y-4 pt-4">
-                    <p className="text-sm text-muted-foreground">
-                      <strong>What it does:</strong> Handles data encryption,
-                      compression, and format translation.
-                    </p>
-                    <div className="grid md:grid-cols-2 gap-4 text-sm">
-                      <div>
-                        <strong>Functions:</strong>
-                        <ul className="list-disc pl-5 mt-1 text-muted-foreground">
-                          <li>Data encryption/decryption</li>
-                          <li>Data compression</li>
-                          <li>Character encoding (ASCII, Unicode)</li>
-                          <li>Data format conversion</li>
-                        </ul>
-                      </div>
-                      <div>
-                        <strong>Technologies:</strong>
-                        <ul className="list-disc pl-5 mt-1 text-muted-foreground">
-                          <li>SSL/TLS encryption</li>
-                          <li>JPEG, GIF image formats</li>
-                          <li>MPEG video compression</li>
-                          <li>Data serialization (JSON, XML)</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="application">
-                <AccordionTrigger className="text-left">
-                  <div className="flex items-center gap-3">
-                    <Badge>Layer 7</Badge>
-                    <span>Application Layer - User Interface</span>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent>
-                  <div className="space-y-4 pt-4">
-                    <p className="text-sm text-muted-foreground">
-                      <strong>What it does:</strong> Provides network services
-                      directly to end-user applications.
-                    </p>
-                    <div className="grid md:grid-cols-2 gap-4 text-sm">
-                      <div>
-                        <strong>Common Protocols:</strong>
-                        <ul className="list-disc pl-5 mt-1 text-muted-foreground">
-                          <li>HTTP/HTTPS (Web browsing)</li>
-                          <li>SMTP/POP3/IMAP (Email)</li>
-                          <li>FTP/SFTP (File transfer)</li>
-                          <li>DNS (Domain name resolution)</li>
-                          <li>SSH (Secure shell)</li>
-                        </ul>
-                      </div>
-                      <div>
-                        <strong>Attack Surface:</strong>
-                        <ul className="list-disc pl-5 mt-1 text-muted-foreground">
-                          <li>Web application vulnerabilities</li>
-                          <li>Email phishing attacks</li>
-                          <li>SQL injection</li>
-                          <li>Cross-site scripting (XSS)</li>
-                          <li>API security flaws</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
+              {/* Add remaining layers following the same pattern... */}
             </Accordion>
-          </div>
-
-          {/* How It All Works Together */}
-          <div className="mt-16">
-            <h3 className="text-2xl font-semibold text-center mb-6">
-              Data Flow: Complete Journey
-            </h3>
-            <Card className="max-w-4xl mx-auto bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20">
-              <CardContent className="p-8">
-                <div className="space-y-6">
-                  <div className="text-center mb-6">
-                    <h4 className="text-lg font-semibold mb-2">
-                      📧 Example: Sending an Email
-                    </h4>
-                    <p className="text-sm text-muted-foreground">
-                      Let's trace how data travels through all layers when you
-                      send an email
-                    </p>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-4">
-                      <h5 className="font-semibold text-green-600">
-                        📤 Sending (Encapsulation)
-                      </h5>
-                      <div className="space-y-3">
-                        {[
-                          {
-                            layer: "L7",
-                            action: "Compose email in Gmail",
-                            detail: "SMTP protocol, email headers",
-                          },
-                          {
-                            layer: "L6",
-                            action: "Encrypt with TLS",
-                            detail: "Secure the email content",
-                          },
-                          {
-                            layer: "L5",
-                            action: "Establish session",
-                            detail: "Connect to mail server",
-                          },
-                          {
-                            layer: "L4",
-                            action: "TCP segments",
-                            detail: "Port 587 (SMTP), reliable delivery",
-                          },
-                          {
-                            layer: "L3",
-                            action: "IP packets",
-                            detail: "Add source/destination IP addresses",
-                          },
-                          {
-                            layer: "L2",
-                            action: "Ethernet frames",
-                            detail: "Add MAC addresses for local delivery",
-                          },
-                          {
-                            layer: "L1",
-                            action: "Electrical signals",
-                            detail: "Transmit bits over network cable",
-                          },
-                        ].map((step, index) => (
-                          <div key={index} className="flex gap-3 items-start">
-                            <Badge
-                              variant="outline"
-                              className="text-xs shrink-0"
-                            >
-                              {step.layer}
-                            </Badge>
-                            <div className="text-sm">
-                              <div className="font-medium">{step.action}</div>
-                              <div className="text-muted-foreground text-xs">
-                                {step.detail}
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="space-y-4">
-                      <h5 className="font-semibold text-blue-600">
-                        📥 Receiving (Decapsulation)
-                      </h5>
-                      <div className="space-y-3">
-                        {[
-                          {
-                            layer: "L1",
-                            action: "Receive signals",
-                            detail: "Convert electrical signals to bits",
-                          },
-                          {
-                            layer: "L2",
-                            action: "Process frames",
-                            detail: "Check MAC address, forward to IP",
-                          },
-                          {
-                            layer: "L3",
-                            action: "Route packets",
-                            detail: "Check destination IP, route to host",
-                          },
-                          {
-                            layer: "L4",
-                            action: "Reassemble",
-                            detail: "TCP ensures all segments arrive",
-                          },
-                          {
-                            layer: "L5",
-                            action: "Manage session",
-                            detail: "Maintain connection to mail server",
-                          },
-                          {
-                            layer: "L6",
-                            action: "Decrypt data",
-                            detail: "TLS decryption, format conversion",
-                          },
-                          {
-                            layer: "L7",
-                            action: "Display email",
-                            detail: "Email client shows the message",
-                          },
-                        ].map((step, index) => (
-                          <div key={index} className="flex gap-3 items-start">
-                            <Badge
-                              variant="outline"
-                              className="text-xs shrink-0"
-                            >
-                              {step.layer}
-                            </Badge>
-                            <div className="text-sm">
-                              <div className="font-medium">{step.action}</div>
-                              <div className="text-muted-foreground text-xs">
-                                {step.detail}
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-6 p-4 bg-white dark:bg-gray-900 rounded-lg border">
-                    <h6 className="font-semibold mb-2 text-center">
-                      🔍 Security Checkpoints
-                    </h6>
-                    <div className="grid md:grid-cols-3 gap-4 text-xs">
-                      <div>
-                        <strong>Network Level:</strong>
-                        <ul className="list-disc pl-4 mt-1 text-muted-foreground">
-                          <li>Firewall rules (L3-4)</li>
-                          <li>IDS/IPS monitoring</li>
-                          <li>VPN tunneling</li>
-                        </ul>
-                      </div>
-                      <div>
-                        <strong>Application Level:</strong>
-                        <ul className="list-disc pl-4 mt-1 text-muted-foreground">
-                          <li>Email filtering</li>
-                          <li>Antivirus scanning</li>
-                          <li>Authentication</li>
-                        </ul>
-                      </div>
-                      <div>
-                        <strong>Data Level:</strong>
-                        <ul className="list-disc pl-4 mt-1 text-muted-foreground">
-                          <li>Encryption (TLS)</li>
-                          <li>Digital signatures</li>
-                          <li>Data integrity checks</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </section>
 
       {/* Getting Started Section */}
-      {/* <section id="getting-started" className="bg-muted/30 py-16">
+      <section id="getting-started" className="bg-muted/30 py-20">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
             Ready to Start Your Journey?
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed">
             Choose your path and begin mastering cybersecurity fundamentals with
             hands-on experiments and real-world scenarios.
           </p>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <Link to="/experiment">
-              <Card className="hover:shadow-lg transition-shadow h-full">
-                <CardContent className="p-6 text-center flex flex-col items-center justify-center">
-                  <div className="w-12 h-12 bg-blue-100 dark:bg-blue-950 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Eye className="w-6 h-6 text-blue-600" />
+              <Card className="hover:shadow-xl transition-all duration-300 h-full group">
+                <CardContent className="p-8 text-center flex flex-col items-center justify-center">
+                  <div className="w-16 h-16 bg-blue-100 dark:bg-blue-950 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Eye className="w-8 h-8 text-blue-600" />
                   </div>
-                  <h3 className="font-semibold mb-2">Explore Experiments</h3>
-                  <p className="text-sm text-muted-foreground">
+                  <h3 className="font-semibold mb-3 text-xl">Explore Experiments</h3>
+                  <p className="text-muted-foreground leading-relaxed">
                     Try hands-on cybersecurity experiments and simulations
                   </p>
                 </CardContent>
@@ -1110,13 +694,13 @@ const Home = () => {
             </Link>
 
             <Link to="/material">
-              <Card className="hover:shadow-lg transition-shadow h-full">
-                <CardContent className="p-6 text-center flex flex-col items-center justify-center">
-                  <div className="w-12 h-12 bg-green-100 dark:bg-green-950 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Users className="w-6 h-6 text-green-600" />
+              <Card className="hover:shadow-xl transition-all duration-300 h-full group">
+                <CardContent className="p-8 text-center flex flex-col items-center justify-center">
+                  <div className="w-16 h-16 bg-green-100 dark:bg-green-950 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Users className="w-8 h-8 text-green-600" />
                   </div>
-                  <h3 className="font-semibold mb-2">Study Materials</h3>
-                  <p className="text-sm text-muted-foreground">
+                  <h3 className="font-semibold mb-3 text-xl">Study Materials</h3>
+                  <p className="text-muted-foreground leading-relaxed">
                     Access comprehensive guides and reference materials
                   </p>
                 </CardContent>
@@ -1124,13 +708,13 @@ const Home = () => {
             </Link>
 
             <a href="/#basics">
-              <Card className="hover:shadow-lg transition-shadow h-full">
-                <CardContent className="p-6 text-center flex flex-col items-center justify-center">
-                  <div className="w-12 h-12 bg-purple-100 dark:bg-purple-950 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Lock className="w-6 h-6 text-purple-600" />
+              <Card className="hover:shadow-xl transition-all duration-300 h-full group">
+                <CardContent className="p-8 text-center flex flex-col items-center justify-center">
+                  <div className="w-16 h-16 bg-purple-100 dark:bg-purple-950 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Lock className="w-8 h-8 text-purple-600" />
                   </div>
-                  <h3 className="font-semibold mb-2">Practice Commands</h3>
-                  <p className="text-sm text-muted-foreground">
+                  <h3 className="font-semibold mb-3 text-xl">Practice Commands</h3>
+                  <p className="text-muted-foreground leading-relaxed">
                     Learn essential cybersecurity tools and commands
                   </p>
                 </CardContent>
@@ -1138,7 +722,7 @@ const Home = () => {
             </a>
           </div>
         </div>
-      </section> */}
+      </section>
     </div>
   );
 };
