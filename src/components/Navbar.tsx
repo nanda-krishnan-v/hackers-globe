@@ -29,6 +29,12 @@ const Navbar = () => {
           >
             Materials
           </Link>
+          <Link
+            to="/interview"
+            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+          >
+            Interview
+          </Link>
         </nav>
 
         <div className="flex items-center space-x-2">
@@ -50,6 +56,9 @@ const Navbar = () => {
                 </Link> */}
                 <Link to="/material" className="text-lg font-medium">
                   Materials
+                </Link>
+                <Link to="/interview" className="text-lg font-medium">
+                  Interview
                 </Link>
               </div>
             </SheetContent>

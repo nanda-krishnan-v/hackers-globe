@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Experiment from "./pages/Experiment";
 import Material from "./pages/Material";
+import Interview from "./pages/Interview";
 import Navbar from "./components/Navbar";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 
@@ -15,7 +16,12 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="dark"
+      enableSystem={false}
+      disableTransitionOnChange
+    >
       <TooltipProvider>
         <Toaster />
         <Sonner />
@@ -26,6 +32,7 @@ const App = () => (
               <Route path="/" element={<Home />} />
               <Route path="/experiment" element={<Experiment />} />
               <Route path="/material" element={<Material />} />
+              <Route path="/interview" element={<Interview />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
