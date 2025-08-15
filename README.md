@@ -29,11 +29,11 @@ HackersGlobe
 
 1.  Clone the repository:
     ```bash
-    git clone https://github.com/nanda-krishnan-v/cyber-command-playbook.git
+    git clone https://github.com/nanda-krishnan-v/hackers-globe.git
     ```
 2.  Navigate to the project directory:
     ```bash
-    cd cyber-command-playbook
+    cd hackers-globe
     ```
 3.  Install the dependencies:
     ```bash
@@ -58,27 +58,8 @@ To build the application for production, run the following command:
 npm run build
 ```
 
-This will create a `dist` directory with the optimized production build.
+This will create a `dist` directory with the optimised production build.
 
-## Project Structure
-
-```
-.
-├── public/
-├── src/
-│   ├── components/
-│   │   ├── ui/
-│   │   ├── Navbar.tsx
-│   │   └── ThemeToggle.tsx
-│   ├── pages/
-│   │   ├── Home.tsx
-│   │   └── NotFound.tsx
-│   ├── App.tsx
-│   ├── main.tsx
-│   └── ...
-├── package.json
-└── ...
-=======
 # 🔐 HackersGlobe
 
 ![React](https://img.shields.io/badge/React-18-blue?logo=react)
@@ -89,41 +70,3 @@ This will create a `dist` directory with the optimized production build.
 An **interactive web app** for learning cybersecurity tools and commands. Built with **React 18**, **Vite**, **Tailwind CSS**, and **Lucide Icons**, it offers a fast, modern, and responsive way for students and professionals to explore cybersecurity commands by category or search.
 
 ---
-
-## 📌 Features
-
-- **Smart Search** – Real-time, multi-field, case-insensitive filtering.
-- **Category Navigation** – Five main categories:  
-  - Networking  
-  - Ethical Hacking  
-  - Cryptography  
-  - Digital Forensics  
-  - Linux Basics
-- **Command Cards** – Syntax, descriptions, examples, copy-to-clipboard, and category badges.
-- **Responsive Design** – Mobile-first, adaptive grid, touch-friendly tabs.
-- **Safe & Ethical** – Secure examples only, with no harmful commands.
-
----
-
-## 🛠️ Tech Stack
-
-- **React 18** – Modern UI framework
-- **Vite** – Lightning-fast dev/build tool
-- **Tailwind CSS** – Utility-first styling
-- **Lucide Icons** – Clean icon set
-- **JavaScript (ES6+)** – Modern language features
-
----
-
-## 📦 Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/cybersecurity-command-center.git
-
-# Navigate into the folder
-cd cybersecurity-command-center
-
-# Install dependencies
-npm install
->>>>>>> f674755e77e6d709e6dc9d07411cde388a5068eb
