@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Card,
@@ -38,6 +38,8 @@ import {
 } from "lucide-react";
 
 const Home = () => {
+  const [currentLayer, setCurrentLayer] = useState(1);
+
   useEffect(() => {
     document.title = "HackersGlobe - Your Cybersecurity Journey Starts Here";
     const metaDesc = document.querySelector('meta[name="description"]');
@@ -613,95 +615,439 @@ const Home = () => {
           </div>
 
           {/* Interactive Layer Explorer */}
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <h3 className="text-2xl font-semibold text-center mb-8">
               Explore Each Layer
             </h3>
-            <Accordion type="single" collapsible className="w-full">
-              <AccordionItem value="physical">
-                <AccordionTrigger className="text-left">
-                  <div className="flex items-center gap-3">
-                    <Badge className="text-sm">Layer 1</Badge>
-                    <span className="text-lg">
-                      Physical Layer - The Foundation
-                    </span>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent>
-                  <div className="space-y-6 pt-4">
-                    <p className="text-muted-foreground leading-relaxed">
-                      <strong>What it does:</strong> Handles the physical
-                      transmission of raw bits over communication channels.
-                    </p>
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div>
-                        <strong className="text-base">Examples:</strong>
-                        <ul className="list-disc pl-5 mt-2 text-muted-foreground space-y-1">
-                          <li>Ethernet cables (Cat5e, Cat6)</li>
-                          <li>Fiber optic cables</li>
-                          <li>WiFi radio signals</li>
-                          <li>Bluetooth</li>
-                        </ul>
-                      </div>
-                      <div>
-                        <strong className="text-base">
-                          Security Concerns:
-                        </strong>
-                        <ul className="list-disc pl-5 mt-2 text-muted-foreground space-y-1">
-                          <li>Cable tapping</li>
-                          <li>Physical device access</li>
-                          <li>Electromagnetic interference</li>
-                          <li>Signal jamming</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
 
-              {/* Continue with other layers... */}
-              <AccordionItem value="datalink">
-                <AccordionTrigger className="text-left">
-                  <div className="flex items-center gap-3">
-                    <Badge className="text-sm">Layer 2</Badge>
-                    <span className="text-lg">
-                      Data Link Layer - Local Network Communication
-                    </span>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent>
-                  <div className="space-y-6 pt-4">
-                    <p className="text-muted-foreground leading-relaxed">
-                      <strong>What it does:</strong> Manages communication
-                      between devices on the same network segment using MAC
-                      addresses.
-                    </p>
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div>
-                        <strong className="text-base">Key Concepts:</strong>
-                        <ul className="list-disc pl-5 mt-2 text-muted-foreground space-y-1">
-                          <li>MAC addresses (48-bit hardware addresses)</li>
-                          <li>Ethernet frames</li>
-                          <li>Switching and VLANs</li>
-                          <li>ARP (Address Resolution Protocol)</li>
-                        </ul>
-                      </div>
-                      <div>
-                        <strong className="text-base">Attack Examples:</strong>
-                        <ul className="list-disc pl-5 mt-2 text-muted-foreground space-y-1">
-                          <li>ARP spoofing/poisoning</li>
-                          <li>MAC flooding</li>
-                          <li>VLAN hopping</li>
-                          <li>Switch CAM table overflow</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
+            {/* OSI Layers Carousel */}
+            <div className="relative">
+              {/* Navigation Dots */}
+              <div className="flex justify-center mb-6">
+                <div className="flex space-x-2">
+                  {[1, 2, 3, 4, 5, 6, 7].map((layer) => (
+                    <button
+                      key={layer}
+                      onClick={() => setCurrentLayer(layer)}
+                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                        currentLayer === layer
+                          ? "bg-blue-600 scale-125"
+                          : "bg-gray-300 hover:bg-gray-400"
+                      }`}
+                      aria-label={`Go to Layer ${layer}`}
+                    />
+                  ))}
+                </div>
+              </div>
 
-              {/* Add remaining layers following the same pattern... */}
-            </Accordion>
+              {/* Carousel Container */}
+              <div className="relative overflow-hidden rounded-xl">
+                <div
+                  className="flex transition-transform duration-500 ease-in-out"
+                  style={{
+                    transform: `translateX(-${(currentLayer - 1) * 100}%)`,
+                  }}
+                >
+                  {/* Layer 7 - Application */}
+                  <div className="w-full flex-shrink-0 px-4">
+                    <Card className="hover:shadow-xl transition-all duration-300 border-l-4 border-l-purple-500 group max-w-2xl mx-auto">
+                      <CardHeader>
+                        <div className="flex items-center gap-3 mb-3">
+                          <Badge className="text-sm bg-purple-600">
+                            Layer 7
+                          </Badge>
+                          <Globe className="w-6 h-6 text-purple-600" />
+                        </div>
+                        <CardTitle className="text-xl text-purple-700">
+                          Application Layer
+                        </CardTitle>
+                        <CardDescription className="text-base">
+                          User Interface & Network Services
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-4">
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            Provides network services directly to end-user
+                            applications and enables user interaction with the
+                            network.
+                          </p>
+                          <div className="grid md:grid-cols-2 gap-4">
+                            <div>
+                              <strong className="text-sm">
+                                Protocols & Services:
+                              </strong>
+                              <div className="text-xs text-muted-foreground mt-1 space-y-1">
+                                <div>• HTTP/HTTPS (Web browsing)</div>
+                                <div>• FTP (File transfer)</div>
+                                <div>• SMTP/POP3/IMAP (Email)</div>
+                                <div>• DNS (Domain name resolution)</div>
+                                <div>• SSH (Secure shell)</div>
+                              </div>
+                            </div>
+                            <div>
+                              <strong className="text-sm">
+                                Security Threats:
+                              </strong>
+                              <div className="text-xs text-muted-foreground mt-1 space-y-1">
+                                <div>• SQL Injection attacks</div>
+                                <div>• Cross-site scripting (XSS)</div>
+                                <div>• Phishing and social engineering</div>
+                                <div>• DNS poisoning</div>
+                                <div>• Application-level DDoS</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+
+                  {/* Layer 6 - Presentation */}
+                  <div className="w-full flex-shrink-0 px-4">
+                    <Card className="hover:shadow-xl transition-all duration-300 border-l-4 border-l-blue-500 group max-w-2xl mx-auto">
+                      <CardHeader>
+                        <div className="flex items-center gap-3 mb-3">
+                          <Badge className="text-sm bg-blue-600">Layer 6</Badge>
+                          <Lock className="w-6 h-6 text-blue-600" />
+                        </div>
+                        <CardTitle className="text-xl text-blue-700">
+                          Presentation Layer
+                        </CardTitle>
+                        <CardDescription className="text-base">
+                          Data Translation & Encryption
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-4">
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            Ensures that data sent from the application layer is
+                            readable by the receiving system through data
+                            translation, encryption, and compression.
+                          </p>
+                          <div className="grid md:grid-cols-2 gap-4">
+                            <div>
+                              <strong className="text-sm">Functions:</strong>
+                              <div className="text-xs text-muted-foreground mt-1 space-y-1">
+                                <div>• Data encryption/decryption</div>
+                                <div>• Character encoding (ASCII, Unicode)</div>
+                                <div>• Data compression</div>
+                                <div>• Format conversion</div>
+                                <div>• SSL/TLS handshake</div>
+                              </div>
+                            </div>
+                            <div>
+                              <strong className="text-sm">
+                                Security Concerns:
+                              </strong>
+                              <div className="text-xs text-muted-foreground mt-1 space-y-1">
+                                <div>• Weak encryption algorithms</div>
+                                <div>• Certificate manipulation</div>
+                                <div>• Man-in-the-middle attacks</div>
+                                <div>• Encoding-based attacks</div>
+                                <div>• Compression oracle attacks</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+
+                  {/* Layer 5 - Session */}
+                  <div className="w-full flex-shrink-0 px-4">
+                    <Card className="hover:shadow-xl transition-all duration-300 border-l-4 border-l-green-500 group max-w-2xl mx-auto">
+                      <CardHeader>
+                        <div className="flex items-center gap-3 mb-3">
+                          <Badge className="text-sm bg-green-600">
+                            Layer 5
+                          </Badge>
+                          <Users className="w-6 h-6 text-green-600" />
+                        </div>
+                        <CardTitle className="text-xl text-green-700">
+                          Session Layer
+                        </CardTitle>
+                        <CardDescription className="text-base">
+                          Connection Management
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-4">
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            Manages sessions between applications, including
+                            session establishment, maintenance, and termination.
+                          </p>
+                          <div className="grid md:grid-cols-2 gap-4">
+                            <div>
+                              <strong className="text-sm">
+                                Session Management:
+                              </strong>
+                              <div className="text-xs text-muted-foreground mt-1 space-y-1">
+                                <div>• Session establishment</div>
+                                <div>• Authentication and authorization</div>
+                                <div>• Session synchronization</div>
+                                <div>• Checkpointing and recovery</div>
+                                <div>• Session termination</div>
+                              </div>
+                            </div>
+                            <div>
+                              <strong className="text-sm">
+                                Session Attacks:
+                              </strong>
+                              <div className="text-xs text-muted-foreground mt-1 space-y-1">
+                                <div>• Session hijacking</div>
+                                <div>• Session fixation</div>
+                                <div>• Session replay attacks</div>
+                                <div>• Brute force on sessions</div>
+                                <div>• Session timeout exploitation</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+
+                  {/* Layer 4 - Transport */}
+                  <div className="w-full flex-shrink-0 px-4">
+                    <Card className="hover:shadow-xl transition-all duration-300 border-l-4 border-l-yellow-500 group max-w-2xl mx-auto">
+                      <CardHeader>
+                        <div className="flex items-center gap-3 mb-3">
+                          <Badge className="text-sm bg-yellow-600">
+                            Layer 4
+                          </Badge>
+                          <ArrowRight className="w-6 h-6 text-yellow-600" />
+                        </div>
+                        <CardTitle className="text-xl text-yellow-700">
+                          Transport Layer
+                        </CardTitle>
+                        <CardDescription className="text-base">
+                          End-to-End Communication
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-4">
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            Ensures complete data transfer between applications
+                            on different hosts, handling flow control, error
+                            detection, and data segmentation.
+                          </p>
+                          <div className="grid md:grid-cols-2 gap-4">
+                            <div>
+                              <strong className="text-sm">Protocols:</strong>
+                              <div className="text-xs text-muted-foreground mt-1 space-y-1">
+                                <div>• TCP (Transmission Control Protocol)</div>
+                                <div>• UDP (User Datagram Protocol)</div>
+                                <div>• Port numbers (0-65535)</div>
+                                <div>• Flow control mechanisms</div>
+                                <div>• Error detection and recovery</div>
+                              </div>
+                            </div>
+                            <div>
+                              <strong className="text-sm">
+                                Transport Attacks:
+                              </strong>
+                              <div className="text-xs text-muted-foreground mt-1 space-y-1">
+                                <div>• SYN flood attacks</div>
+                                <div>• Port scanning</div>
+                                <div>• TCP sequence prediction</div>
+                                <div>• UDP flood attacks</div>
+                                <div>• Connection hijacking</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+
+                  {/* Layer 3 - Network */}
+                  <div className="w-full flex-shrink-0 px-4">
+                    <Card className="hover:shadow-xl transition-all duration-300 border-l-4 border-l-red-500 group max-w-2xl mx-auto">
+                      <CardHeader>
+                        <div className="flex items-center gap-3 mb-3">
+                          <Badge className="text-sm bg-red-600">Layer 3</Badge>
+                          <Globe className="w-6 h-6 text-red-600" />
+                        </div>
+                        <CardTitle className="text-xl text-red-700">
+                          Network Layer
+                        </CardTitle>
+                        <CardDescription className="text-base">
+                          Internet Protocol & Routing
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-4">
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            Handles logical addressing and routing of data
+                            packets across different networks using IP
+                            addresses.
+                          </p>
+                          <div className="grid md:grid-cols-2 gap-4">
+                            <div>
+                              <strong className="text-sm">
+                                Network Protocols:
+                              </strong>
+                              <div className="text-xs text-muted-foreground mt-1 space-y-1">
+                                <div>• IPv4 and IPv6 addressing</div>
+                                <div>• Routing protocols (OSPF, BGP)</div>
+                                <div>• ICMP (ping, traceroute)</div>
+                                <div>• ARP (Address Resolution)</div>
+                                <div>• NAT (Network Address Translation)</div>
+                              </div>
+                            </div>
+                            <div>
+                              <strong className="text-sm">
+                                Network Attacks:
+                              </strong>
+                              <div className="text-xs text-muted-foreground mt-1 space-y-1">
+                                <div>• IP spoofing</div>
+                                <div>• Routing table poisoning</div>
+                                <div>• ICMP flooding</div>
+                                <div>• ARP poisoning</div>
+                                <div>• IP fragmentation attacks</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+
+                  {/* Layer 2 - Data Link */}
+                  <div className="w-full flex-shrink-0 px-4">
+                    <Card className="hover:shadow-xl transition-all duration-300 border-l-4 border-l-indigo-500 group max-w-2xl mx-auto">
+                      <CardHeader>
+                        <div className="flex items-center gap-3 mb-3">
+                          <Badge className="text-sm bg-indigo-600">
+                            Layer 2
+                          </Badge>
+                          <Network className="w-6 h-6 text-indigo-600" />
+                        </div>
+                        <CardTitle className="text-xl text-indigo-700">
+                          Data Link Layer
+                        </CardTitle>
+                        <CardDescription className="text-base">
+                          Local Network Communication
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-4">
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            Manages communication between devices on the same
+                            network segment using MAC addresses and handles
+                            error detection.
+                          </p>
+                          <div className="grid md:grid-cols-2 gap-4">
+                            <div>
+                              <strong className="text-sm">
+                                Data Link Functions:
+                              </strong>
+                              <div className="text-xs text-muted-foreground mt-1 space-y-1">
+                                <div>
+                                  • MAC addressing (48-bit hardware addresses)
+                                </div>
+                                <div>• Ethernet frame formatting</div>
+                                <div>• Switching and VLANs</div>
+                                <div>• Error detection (CRC)</div>
+                                <div>• Flow control</div>
+                              </div>
+                            </div>
+                            <div>
+                              <strong className="text-sm">
+                                Data Link Attacks:
+                              </strong>
+                              <div className="text-xs text-muted-foreground mt-1 space-y-1">
+                                <div>• ARP spoofing/poisoning</div>
+                                <div>• MAC flooding</div>
+                                <div>• VLAN hopping</div>
+                                <div>• Switch CAM table overflow</div>
+                                <div>• Spanning tree attacks</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+
+                  {/* Layer 1 - Physical */}
+                  <div className="w-full flex-shrink-0 px-4">
+                    <Card className="hover:shadow-xl transition-all duration-300 border-l-4 border-l-gray-500 group max-w-2xl mx-auto">
+                      <CardHeader>
+                        <div className="flex items-center gap-3 mb-3">
+                          <Badge className="text-sm bg-gray-600">Layer 1</Badge>
+                          <Target className="w-6 h-6 text-gray-600" />
+                        </div>
+                        <CardTitle className="text-xl text-gray-700">
+                          Physical Layer
+                        </CardTitle>
+                        <CardDescription className="text-base">
+                          The Foundation
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-4">
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            Handles the physical transmission of raw bits over
+                            communication channels, including electrical,
+                            optical, and radio signals.
+                          </p>
+                          <div className="grid md:grid-cols-2 gap-4">
+                            <div>
+                              <strong className="text-sm">
+                                Physical Media:
+                              </strong>
+                              <div className="text-xs text-muted-foreground mt-1 space-y-1">
+                                <div>• Ethernet cables (Cat5e, Cat6, Cat7)</div>
+                                <div>
+                                  • Fiber optic cables (single/multi-mode)
+                                </div>
+                                <div>• WiFi radio signals (2.4GHz, 5GHz)</div>
+                                <div>• Bluetooth and NFC</div>
+                                <div>• Coaxial cables</div>
+                              </div>
+                            </div>
+                            <div>
+                              <strong className="text-sm">
+                                Physical Security:
+                              </strong>
+                              <div className="text-xs text-muted-foreground mt-1 space-y-1">
+                                <div>• Cable tapping and interception</div>
+                                <div>• Physical device access</div>
+                                <div>• Electromagnetic interference (EMI)</div>
+                                <div>• Signal jamming and spoofing</div>
+                                <div>• Environmental factors</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </div>
+              </div>
+
+              {/* Navigation Arrows */}
+              <button
+                onClick={() =>
+                  setCurrentLayer(currentLayer > 1 ? currentLayer - 1 : 7)
+                }
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white border border-gray-200 rounded-full p-2 shadow-lg transition-all duration-300 hover:scale-110"
+                aria-label="Previous layer"
+              >
+                <ArrowRight className="w-5 h-5 text-gray-600 rotate-180" />
+              </button>
+              <button
+                onClick={() =>
+                  setCurrentLayer(currentLayer < 7 ? currentLayer + 1 : 1)
+                }
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white border border-gray-200 rounded-full p-2 shadow-lg transition-all duration-300 hover:scale-110"
+                aria-label="Next layer"
+              >
+                <ArrowRight className="w-5 h-5 text-gray-600" />
+              </button>
+            </div>
           </div>
         </div>
       </section>
