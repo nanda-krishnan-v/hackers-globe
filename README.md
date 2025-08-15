@@ -29,11 +29,11 @@ HackersGlobe
 
 1.  Clone the repository:
     ```bash
-    git clone https://github.com/nanda-krishnan-v/cyber-command-playbook.git
+    git clone https://github.com/nanda-krishnan-v/hackers-globe.git
     ```
 2.  Navigate to the project directory:
     ```bash
-    cd cyber-command-playbook
+    cd hackers-globe
     ```
 3.  Install the dependencies:
     ```bash
@@ -58,7 +58,7 @@ To build the application for production, run the following command:
 npm run build
 ```
 
-This will create a `dist` directory with the optimized production build.
+This will create a `dist` directory with the optimised production build.
 
 ## Project Structure
 
