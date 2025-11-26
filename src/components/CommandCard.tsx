@@ -1,4 +1,10 @@
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Copy, Check } from "lucide-react";
@@ -24,52 +30,54 @@ export const CommandCard = ({ command }: CommandCardProps) => {
     try {
       await navigator.clipboard.writeText(command.usage);
       setCopied(true);
-      toast("Command copied", {
-        description: command.usage,
-      });
+      toast("Copied to clipboard");
       setTimeout(() => setCopied(false), 1500);
     } catch (e) {
-      toast("Copy failed", { description: "Your browser blocked clipboard access." });
+      toast("Copy failed");
     }
   };
 
   return (
-    <Card className="h-full transition-transform duration-200 hover:-translate-y-0.5 focus-within:ring-1 focus-within:ring-ring">
-      <CardHeader className="flex flex-row items-start justify-between space-y-0">
+    <div className="group p-5 border border-border hover:border-foreground/20 transition-all duration-300 rounded-lg">
+      <div className="flex items-start justify-between mb-3">
         <div>
-          <CardTitle className="text-lg">{command.name}</CardTitle>
-          <CardDescription>{command.description}</CardDescription>
+          <h3 className="text-base font-medium mb-1">{command.name}</h3>
+          <p className="text-sm text-muted-foreground">{command.description}</p>
         </div>
-        <Badge variant="secondary" className="shrink-0 self-start">
+        <span className="text-xs px-2 py-1 border border-border rounded flex-shrink-0 ml-3">
           {command.category}
-        </Badge>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        <div className="relative group">
-          <pre className="rounded-md bg-secondary p-3 text-sm overflow-x-auto">
-            <code className="font-mono leading-relaxed text-accent">{command.usage}</code>
+        </span>
+      </div>
+      <div className="relative">
+        <pre className="rounded-md bg-muted p-3 text-xs overflow-x-auto pr-12">
+          <code className="font-mono">{command.usage}</code>
+        </pre>
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          onClick={onCopy}
+          aria-label="Copy command"
+          className="absolute top-1.5 right-1.5 h-7 w-7 p-0"
+        >
+          {copied ? (
+            <Check className="h-3.5 w-3.5" />
+          ) : (
+            <Copy className="h-3.5 w-3.5" />
+          )}
+        </Button>
+      </div>
+      {command.output && (
+        <div className="mt-3">
+          <p className="text-xs text-muted-foreground mb-1.5">Output</p>
+          <pre className="rounded-md border border-border bg-background p-2.5 text-xs overflow-x-auto">
+            <code className="font-mono text-muted-foreground">
+              {command.output}
+            </code>
           </pre>
-          <Button
-            type="button"
-            variant="secondary"
-            size="sm"
-            onClick={onCopy}
-            aria-label="Copy command"
-            className="absolute top-2 right-2"
-          >
-            {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-          </Button>
         </div>
-        {command.output && (
-          <div>
-            <p className="text-sm mb-2 text-muted-foreground">Sample output</p>
-            <pre className="rounded-md border border-border bg-card p-3 text-xs overflow-x-auto">
-              <code className="font-mono leading-relaxed text-foreground/80">{command.output}</code>
-            </pre>
-          </div>
-        )}
-      </CardContent>
-    </Card>
+      )}
+    </div>
   );
 };
 

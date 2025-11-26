@@ -1,52 +1,46 @@
-import React from "react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Shield } from "lucide-react";
+import React, { useEffect } from "react";
+import ChatBot from "@/components/ChatBot";
+import { MessageSquare } from "lucide-react";
 
 const Interview: React.FC = () => {
+  useEffect(() => {
+    // Test API key on component mount
+    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+    console.log("🔑 API Key loaded:", !!apiKey);
+    console.log(
+      "🔑 API Key preview:",
+      apiKey ? `${apiKey.substring(0, 10)}...` : "NOT FOUND"
+    );
+  }, []);
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <section className="container mx-auto px-4 pt-24 pb-16 text-center">
-        <div className="max-w-5xl mx-auto">
-          <div className="mb-6">
-            <span className="inline-flex items-center gap-2 px-4 py-2 bg-muted text-muted-foreground rounded-full font-medium">
-              <Shield className="w-4 h-4" />
-              Interview Prep
-            </span>
-          </div>
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            Cybersecurity Interview Hub
+      {/* Hero Section */}
+      <section className="container mx-auto px-4 pt-32 pb-20">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-6">
+            Interview Preparation
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Curated resources, practice questions, and guides to help you ace
-            your next interview.
+          <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
+            Practice cybersecurity interview questions with our AI assistant
+            powered by Gemini.
           </p>
         </div>
       </section>
 
-      {/* Placeholder Section */}
-      <section className="container mx-auto px-4 pb-24">
-        <div className="max-w-5xl mx-auto">
-          <Card className="hover:shadow-xl transition-all duration-300">
-            <CardHeader>
-              <CardTitle className="text-2xl">Coming soon</CardTitle>
-              <CardDescription>
-                This page is under construction. Check back soon for question
-                banks, scenario drills, and cheat-sheets.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="text-muted-foreground">
-              <div className="h-32 rounded-lg border border-dashed border-border flex items-center justify-center">
-                Placeholder area
-              </div>
-            </CardContent>
-          </Card>
+      {/* Chatbot Section */}
+      <section className="container mx-auto px-4 pb-20">
+        <div className="max-w-4xl mx-auto">
+          <div className="mb-6">
+            <div className="flex items-center gap-2 mb-2">
+              <MessageSquare className="h-5 w-5" />
+              <h2 className="text-xl font-semibold">AI Interview Assistant</h2>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              Ask questions about cybersecurity concepts, get interview tips, or
+              practice common interview scenarios.
+            </p>
+          </div>
+          <ChatBot />
         </div>
       </section>
     </div>

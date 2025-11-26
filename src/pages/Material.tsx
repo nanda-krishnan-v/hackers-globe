@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Book,
   BookOpen,
@@ -30,36 +30,19 @@ import {
   Heart,
   Play,
   ArrowRight,
+  ArrowUpRight,
 } from "lucide-react";
-
-// Mock CommandCard component for demonstration
-const CommandCard = ({ command }) => (
-  <div className="bg-card rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 p-6 border border-gray-100 group">
-    <div className="flex items-center gap-3 mb-4">
-      <div className="p-3 bg-blue-100 dark:bg-blue-950 rounded-xl group-hover:scale-110 transition-transform duration-300">
-        <Terminal className="h-5 w-5 text-blue-600" />
-      </div>
-      <h3 className="font-semibold text-foreground text-lg">{command.name}</h3>
-    </div>
-    <p className="text-muted-foreground mb-4 leading-relaxed">
-      {command.description}
-    </p>
-    <div className="bg-gray-900 rounded-lg p-4 mb-4">
-      <code className="text-green-400 font-mono">{command.usage}</code>
-    </div>
-    {command.output && (
-      <div className="text-xs text-muted-foreground bg-muted p-3 rounded-lg">
-        Output: {command.output.substring(0, 50)}...
-      </div>
-    )}
-  </div>
-);
+import CommandCard from "@/components/CommandCard";
 
 const Material = () => {
   const [activeTab, setActiveTab] = useState("practice");
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Mock commands data
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  // Commands data
   const commands = [
     {
       name: "nmap",
@@ -80,43 +63,28 @@ const Material = () => {
   const tabs = [
     {
       id: "practice",
-      label: "Hands-on Labs",
+      label: "Practice",
       icon: Target,
-      color: "text-red-600",
-      bgColor: "bg-red-50 dark:bg-red-950/20",
-      borderColor: "border-red-200",
     },
     {
       id: "tools",
-      label: "Tools & Commands",
+      label: "Tools",
       icon: Terminal,
-      color: "text-blue-600",
-      bgColor: "bg-blue-50 dark:bg-blue-950/20",
-      borderColor: "border-blue-200",
     },
     {
       id: "theory",
-      label: "Knowledge Base",
+      label: "Theory",
       icon: Book,
-      color: "text-green-600",
-      bgColor: "bg-green-50 dark:bg-green-950/20",
-      borderColor: "border-green-200",
     },
     {
       id: "certs",
       label: "Certifications",
       icon: Award,
-      color: "text-purple-600",
-      bgColor: "bg-purple-50 dark:bg-purple-950/20",
-      borderColor: "border-purple-200",
     },
     {
       id: "community",
       label: "Community",
       icon: Users,
-      color: "text-orange-600",
-      bgColor: "bg-orange-50 dark:bg-orange-950/20",
-      borderColor: "border-orange-200",
     },
   ];
 
@@ -128,10 +96,7 @@ const Material = () => {
       description:
         "Gamified cybersecurity learning with interactive challenges and guided pathways",
       difficulty: "Beginner",
-      rating: 4.8,
       students: "2M+",
-      badge: "Popular",
-      features: ["Guided Learning", "Practical Labs", "Certification Prep"],
     },
     {
       name: "picoCTF",
@@ -140,14 +105,7 @@ const Material = () => {
       description:
         "Educational CTF platform with progressive challenges designed for beginners",
       difficulty: "All Levels",
-      rating: 4.7,
       students: "500K+",
-      badge: "Free",
-      features: [
-        "CTF Challenges",
-        "Educational Focus",
-        "Progressive Difficulty",
-      ],
     },
     {
       name: "PortSwigger Academy",
@@ -156,10 +114,7 @@ const Material = () => {
       description:
         "Free web security training with hands-on labs and detailed explanations",
       difficulty: "Intermediate",
-      rating: 4.9,
       students: "1M+",
-      badge: "Recommended",
-      features: ["Web Security", "Hands-on Labs", "Industry Standard"],
     },
     {
       name: "HackTheBox",
@@ -168,10 +123,7 @@ const Material = () => {
       description:
         "Real-world penetration testing environments and active machines",
       difficulty: "Advanced",
-      rating: 4.6,
       students: "800K+",
-      badge: "Pro",
-      features: ["Real Machines", "Active Directory", "Advanced Techniques"],
     },
   ];
 
@@ -289,122 +241,56 @@ const Material = () => {
     return (
       <button
         onClick={onClick}
-        className={`flex items-center gap-3 px-6 py-4 rounded-xl font-medium transition-all duration-300 ${
+        className={`relative flex items-center gap-2 px-5 py-2.5 font-medium transition-all duration-300 ${
           isActive
-            ? `${tab.bgColor} ${tab.color} shadow-md border ${tab.borderColor}`
-            : "text-muted-foreground hover:text-foreground hover:bg-muted/50 border border-transparent"
+            ? "text-foreground"
+            : "text-muted-foreground hover:text-foreground"
         }`}
       >
-        <Icon className="h-5 w-5" />
-        <span className="hidden sm:inline">{tab.label}</span>
+        <Icon className="h-4 w-4" />
+        <span>{tab.label}</span>
+        {isActive && (
+          <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-foreground rounded-full" />
+        )}
       </button>
     );
   };
 
   const PracticeContent = () => (
-    <div className="space-y-8">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-          Hands-on Practice Labs
-        </h2>
-        <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-          Master cybersecurity through interactive challenges and real-world
-          scenarios
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <div className="space-y-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {practicalLabs.map((lab, index) => {
           const IconComponent = lab.icon;
           return (
-            <div
+            <a
               key={index}
-              className="bg-card rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-8 border border-border group"
+              href={lab.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block p-6 border border-border hover:border-foreground/20 transition-all duration-300 rounded-lg"
             >
-              <div className="flex items-start justify-between mb-6">
-                <div className="flex items-center gap-4">
-                  <div className="p-4 bg-red-50 dark:bg-red-950/20 rounded-xl group-hover:scale-110 transition-transform duration-300">
-                    <IconComponent className="h-8 w-8 text-red-600" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-foreground">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="p-2.5 border border-border rounded-md group-hover:border-foreground/30 transition-colors">
+                  <IconComponent className="h-5 w-5" />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-start justify-between mb-1">
+                    <h3 className="text-lg font-medium group-hover:text-foreground transition-colors">
                       {lab.name}
                     </h3>
-                    <div className="flex items-center gap-3 mt-2">
-                      <div className="flex items-center gap-1">
-                        <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                        <span className="text-sm text-muted-foreground font-medium">
-                          {lab.rating}
-                        </span>
-                      </div>
-                      <span className="text-muted-foreground">•</span>
-                      <span className="text-sm text-muted-foreground font-medium">
-                        {lab.students} students
-                      </span>
-                    </div>
+                    <ArrowUpRight className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </div>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    {lab.description}
+                  </p>
+                  <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                    <span>{lab.difficulty}</span>
+                    <span>•</span>
+                    <span>{lab.students} students</span>
                   </div>
                 </div>
-                <span
-                  className={`px-3 py-2 rounded-full text-sm font-medium ${
-                    lab.badge === "Popular"
-                      ? "bg-red-100 dark:bg-red-950/20 text-red-700 dark:text-red-400"
-                      : lab.badge === "Free"
-                      ? "bg-green-100 dark:bg-green-950/20 text-green-700 dark:text-green-400"
-                      : lab.badge === "Recommended"
-                      ? "bg-blue-100 dark:bg-blue-950/20 text-blue-700 dark:text-blue-400"
-                      : "bg-purple-100 dark:bg-purple-950/20 text-purple-700 dark:text-purple-400"
-                  }`}
-                >
-                  {lab.badge}
-                </span>
               </div>
-
-              <p className="text-muted-foreground mb-6 leading-relaxed">
-                {lab.description}
-              </p>
-
-              <div className="mb-6">
-                <h4 className="font-semibold mb-3">Key Features:</h4>
-                <div className="flex flex-wrap gap-2">
-                  {lab.features.map((feature, idx) => (
-                    <span
-                      key={idx}
-                      className="px-3 py-1 bg-muted rounded-full text-sm"
-                    >
-                      {feature}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  <span
-                    className={`px-4 py-2 rounded-full font-medium ${
-                      lab.difficulty === "Beginner"
-                        ? "bg-green-100 dark:bg-green-950/20 text-green-700 dark:text-green-400"
-                        : lab.difficulty === "Intermediate"
-                        ? "bg-yellow-100 dark:bg-yellow-950/20 text-yellow-700 dark:text-yellow-400"
-                        : lab.difficulty === "Advanced"
-                        ? "bg-red-100 dark:bg-red-950/20 text-red-700 dark:text-red-400"
-                        : "bg-blue-100 dark:bg-blue-950/20 text-blue-700 dark:text-blue-400"
-                    }`}
-                  >
-                    {lab.difficulty}
-                  </span>
-                </div>
-                <a
-                  href={lab.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-gradient-to-r from-red-600 to-purple-600 text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-300 group-hover:scale-105"
-                >
-                  <Play className="h-4 w-4" />
-                  Start Learning
-                  <ExternalLink className="h-4 w-4" />
-                </a>
-              </div>
-            </div>
+            </a>
           );
         })}
       </div>
@@ -456,178 +342,79 @@ const Material = () => {
   };
 
   const TheoryContent = () => (
-    <div className="space-y-8">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-          Knowledge Base
-        </h2>
-        <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-          Essential reading and frameworks for cybersecurity mastery and
-          professional development
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+    <div className="space-y-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {theoreticalResources.map((resource, index) => (
-          <div
+          <a
             key={index}
-            className="bg-card rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-8 border border-border group"
+            href={resource.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group block p-6 border border-border hover:border-foreground/20 transition-all duration-300 rounded-lg"
           >
-            <div className="flex items-start justify-between mb-6">
-              <div className="flex-1">
-                <h3 className="text-2xl font-bold text-foreground mb-3">
-                  {resource.title}
-                </h3>
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="px-3 py-1 bg-green-100 dark:bg-green-950/20 text-green-700 dark:text-green-400 rounded-full text-sm font-medium">
-                    {resource.category}
-                  </span>
-                  <span className="px-3 py-1 bg-blue-100 dark:bg-blue-950/20 text-blue-700 dark:text-blue-400 rounded-full text-sm font-medium">
-                    {resource.level}
-                  </span>
-                </div>
-              </div>
+            <div className="flex items-start justify-between mb-4">
+              <h3 className="text-lg font-medium group-hover:text-foreground transition-colors pr-4">
+                {resource.title}
+              </h3>
+              <ArrowUpRight className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 flex-shrink-0" />
             </div>
-
-            <p className="text-muted-foreground mb-6 leading-relaxed">
+            <p className="text-sm text-muted-foreground mb-4">
               {resource.description}
             </p>
-
-            <div className="mb-6">
-              <h4 className="font-semibold mb-3">Key Topics:</h4>
-              <div className="flex flex-wrap gap-2">
-                {resource.topics.map((topic, idx) => (
-                  <span
-                    key={idx}
-                    className="px-3 py-1 bg-muted rounded-full text-sm"
-                  >
-                    {topic}
-                  </span>
-                ))}
-              </div>
+            <div className="flex items-center gap-2 text-xs text-muted-foreground">
+              <span className="px-2 py-1 border border-border rounded text-xs">
+                {resource.category}
+              </span>
+              <span className="px-2 py-1 border border-border rounded text-xs">
+                {resource.readTime}
+              </span>
             </div>
-
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <Clock className="h-4 w-4" />
-                <span className="font-medium">{resource.readTime}</span>
-              </div>
-              <a
-                href={resource.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-green-600 to-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-300"
-              >
-                <BookOpen className="h-4 w-4" />
-                Read Now
-                <ExternalLink className="h-4 w-4" />
-              </a>
-            </div>
-          </div>
+          </a>
         ))}
       </div>
     </div>
   );
 
   const CertificationsContent = () => (
-    <div className="space-y-8">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-          Certification Paths
-        </h2>
-        <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-          Advance your career with industry-recognized credentials and
-          professional certifications
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+    <div className="space-y-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {certificationPaths.map((cert, index) => (
           <div
             key={index}
-            className="bg-card rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-8 border border-border group"
+            className="group block p-6 border border-border hover:border-foreground/20 transition-all duration-300 rounded-lg"
           >
-            <div className="text-center mb-8">
-              <div className="inline-flex items-center justify-center w-20 h-20 bg-purple-50 dark:bg-purple-950/20 rounded-xl mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Award className="h-10 w-10 text-purple-600" />
-              </div>
-              <h3 className="text-2xl font-bold text-foreground mb-2">
-                {cert.name}
-              </h3>
-              <p className="text-purple-600 font-medium text-lg">
-                {cert.provider}
-              </p>
-            </div>
-
-            <div className="space-y-4 mb-8">
-              <div className="flex items-center justify-between">
-                <span className="text-muted-foreground font-medium">
-                  Level:
-                </span>
-                <span
-                  className={`px-3 py-1 rounded-full text-sm font-medium ${
-                    cert.level === "Entry Level"
-                      ? "bg-green-100 dark:bg-green-950/20 text-green-700 dark:text-green-400"
-                      : cert.level === "Intermediate"
-                      ? "bg-yellow-100 dark:bg-yellow-950/20 text-yellow-700 dark:text-yellow-400"
-                      : "bg-red-100 dark:bg-red-950/20 text-red-700 dark:text-red-400"
-                  }`}
-                >
-                  {cert.level}
-                </span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-muted-foreground font-medium">
-                  Duration:
-                </span>
-                <span className="font-medium text-foreground">
-                  {cert.duration}
-                </span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-muted-foreground font-medium">
-                  Avg. Salary:
-                </span>
-                <span className="font-bold text-green-600">{cert.salary}</span>
+            <div className="flex items-start justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <div className="p-2.5 border border-border rounded-md group-hover:border-foreground/30 transition-colors">
+                  <Award className="h-5 w-5" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-medium">{cert.name}</h3>
+                  <p className="text-xs text-muted-foreground">
+                    {cert.provider}
+                  </p>
+                </div>
               </div>
             </div>
-
-            <p className="text-muted-foreground mb-6 leading-relaxed">
+            <p className="text-sm text-muted-foreground mb-4">
               {cert.description}
             </p>
-
-            <div className="mb-6">
-              <h4 className="font-semibold mb-3">Key Domains:</h4>
-              <div className="flex flex-wrap gap-2">
-                {cert.domains.map((domain, idx) => (
-                  <span
-                    key={idx}
-                    className="px-3 py-1 bg-muted rounded-full text-sm"
-                  >
-                    {domain}
-                  </span>
-                ))}
+            <div className="space-y-2 text-xs text-muted-foreground">
+              <div className="flex items-center justify-between">
+                <span>Level</span>
+                <span className="text-foreground">{cert.level}</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span>Duration</span>
+                <span className="text-foreground">{cert.duration}</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span>Salary Range</span>
+                <span className="text-foreground font-medium">
+                  {cert.salary}
+                </span>
               </div>
             </div>
-
-            <div className="mb-6">
-              <div className="flex items-center justify-between text-muted-foreground mb-2">
-                <span className="font-medium">Industry Demand</span>
-                <span className="font-bold">{cert.popularity}%</span>
-              </div>
-              <div className="w-full bg-muted rounded-full h-3">
-                <div
-                  className="bg-gradient-to-r from-purple-600 to-blue-600 h-3 rounded-full transition-all duration-300"
-                  style={{ width: `${cert.popularity}%` }}
-                ></div>
-              </div>
-            </div>
-
-            <button className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-4 rounded-lg font-medium hover:shadow-lg transition-all duration-300 group-hover:scale-105 flex items-center justify-center gap-2">
-              <Trophy className="h-4 w-4" />
-              Learn More
-              <ArrowRight className="h-4 w-4" />
-            </button>
           </div>
         ))}
       </div>
@@ -635,82 +422,38 @@ const Material = () => {
   );
 
   const CommunityContent = () => (
-    <div className="space-y-8">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-          Community & Networking
-        </h2>
-        <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-          Connect with cybersecurity professionals and enthusiasts worldwide for
-          learning and growth
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <div className="space-y-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {communities.map((community, index) => (
-          <div
+          <a
             key={index}
-            className="bg-card rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-8 border border-border group"
+            href={community.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group block p-6 border border-border hover:border-foreground/20 transition-all duration-300 rounded-lg"
           >
-            <div className="flex items-start gap-6 mb-6">
-              <div className="p-4 bg-orange-50 dark:bg-orange-950/20 rounded-xl group-hover:scale-110 transition-transform duration-300">
-                <MessageSquare className="h-8 w-8 text-orange-600" />
+            <div className="flex items-start gap-4 mb-4">
+              <div className="p-2.5 border border-border rounded-md group-hover:border-foreground/30 transition-colors">
+                <MessageSquare className="h-5 w-5" />
               </div>
               <div className="flex-1">
-                <h3 className="text-2xl font-bold text-foreground mb-2">
-                  {community.name}
-                </h3>
-                <p className="text-orange-600 font-medium text-lg">
-                  {community.platform}
+                <div className="flex items-start justify-between mb-1">
+                  <h3 className="text-lg font-medium group-hover:text-foreground transition-colors">
+                    {community.name}
+                  </h3>
+                  <ArrowUpRight className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </div>
+                <p className="text-sm text-muted-foreground mb-3">
+                  {community.description}
                 </p>
-              </div>
-              <div
-                className={`px-3 py-2 rounded-full text-sm font-medium ${
-                  community.activity === "Very High"
-                    ? "bg-green-100 dark:bg-green-950/20 text-green-700 dark:text-green-400"
-                    : "bg-blue-100 dark:bg-blue-950/20 text-blue-700 dark:text-blue-400"
-                }`}
-              >
-                {community.activity} Activity
+                <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                  <span>{community.platform}</span>
+                  <span>•</span>
+                  <span>{community.members} members</span>
+                </div>
               </div>
             </div>
-
-            <p className="text-muted-foreground mb-6 leading-relaxed">
-              {community.description}
-            </p>
-
-            <div className="mb-6">
-              <h4 className="font-semibold mb-3">Popular Topics:</h4>
-              <div className="flex flex-wrap gap-2">
-                {community.topics.map((topic, idx) => (
-                  <span
-                    key={idx}
-                    className="px-3 py-1 bg-muted rounded-full text-sm"
-                  >
-                    {topic}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <Users className="h-5 w-5" />
-                <span className="font-bold text-lg">{community.members}</span>
-                <span>members</span>
-              </div>
-              <a
-                href={community.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-600 to-red-600 text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-300"
-              >
-                <Users className="h-4 w-4" />
-                Join Community
-                <ExternalLink className="h-4 w-4" />
-              </a>
-            </div>
-          </div>
+          </a>
         ))}
       </div>
     </div>
@@ -735,26 +478,19 @@ const Material = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <section className="container mx-auto px-4 pt-24 pb-16 text-center">
-        <div className="max-w-5xl mx-auto">
-          <div className="mb-6">
-            <span className="inline-flex items-center gap-2 px-4 py-2 bg-muted text-muted-foreground rounded-full font-medium">
-              <Shield className="w-4 h-4" />
-              Cybersecurity Materials
-            </span>
-          </div>
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            Your Cybersecurity Playbook
+      {/* Hero Section */}
+      <section className="container mx-auto px-4 pt-32 pb-20">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-6">
+            Learning Resources
           </h1>
-          <p className="text-xl text-muted-foreground max-w-4xl mx-auto mb-12 leading-relaxed">
-            Your comprehensive guide to mastering cybersecurity through hands-on
-            practice, essential tools, and expert knowledge. Start your journey
-            today.
+          <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
+            Curated materials and platforms to help you master cybersecurity
+            concepts and techniques.
           </p>
 
           {/* Tab Navigation */}
-          <div className="flex flex-wrap justify-center gap-3 bg-muted/50 p-3 rounded-2xl max-w-5xl mx-auto">
+          <div className="flex items-center gap-1 border-b border-border">
             {tabs.map((tab) => (
               <TabButton
                 key={tab.id}
@@ -768,7 +504,9 @@ const Material = () => {
       </section>
 
       {/* Content */}
-      <div className="container mx-auto px-4 py-16">{renderContent()}</div>
+      <div className="container mx-auto px-4 pb-20">
+        <div className="max-w-4xl mx-auto">{renderContent()}</div>
+      </div>
 
       {/* Call to Action Section */}
       {/* <section className="bg-muted/30 py-20 mt-20">
@@ -793,139 +531,36 @@ const Material = () => {
       </section> */}
 
       {/* Footer */}
-      <footer className="bg-background border-t border-border">
-        <div className="container mx-auto px-4 py-20">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-            {/* Brand Section */}
-            <div className="md:col-span-2">
-              <div className="flex items-center gap-3 mb-6">
-                <Shield className="h-10 w-10 text-blue-600" />
-                <span className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  HackersGlobe
-                </span>
-              </div>
-              <p className="text-muted-foreground mb-8 max-w-md leading-relaxed text-lg">
-                Empowering the next generation of cybersecurity professionals
-                through comprehensive learning resources, hands-on practice, and
-                expert guidance.
-              </p>
-              <div className="flex items-center gap-4">
+      <footer className="border-t border-border">
+        <div className="container mx-auto px-4 py-12">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-muted-foreground">
+              <p>© 2025 HackersGlobe. Built by Nanda Krishnan V</p>
+              <div className="flex items-center gap-6">
                 <a
                   href="https://github.com/nanda-krishnan-v"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-xl bg-muted hover:bg-muted/80 transition-all duration-300 hover:scale-110"
+                  className="hover:text-foreground transition-colors"
                 >
-                  <Github className="h-6 w-6 text-muted-foreground hover:text-foreground" />
+                  <Github className="h-4 w-4" />
                 </a>
                 <a
                   href="https://x.com/VNandakrishnan"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-xl bg-muted hover:bg-muted/80 transition-all duration-300 hover:scale-110"
+                  className="hover:text-foreground transition-colors"
                 >
-                  <Twitter className="h-6 w-6 text-muted-foreground hover:text-foreground" />
+                  <Twitter className="h-4 w-4" />
                 </a>
                 <a
                   href="https://www.linkedin.com/in/nanda-krishnan-v-11234b27b/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-xl bg-muted hover:bg-muted/80 transition-all duration-300 hover:scale-110"
+                  className="hover:text-foreground transition-colors"
                 >
-                  <Linkedin className="h-6 w-6 text-muted-foreground hover:text-foreground" />
+                  <Linkedin className="h-4 w-4" />
                 </a>
-                <a
-                  href="mailto:nandakrishnanv15@gmail.com"
-                  className="p-3 rounded-xl bg-muted hover:bg-muted/80 transition-all duration-300 hover:scale-110"
-                >
-                  <Mail className="h-6 w-6 text-muted-foreground hover:text-foreground" />
-                </a>
-              </div>
-            </div>
-
-            {/* Quick Links */}
-            <div>
-              <h4 className="font-semibold text-foreground mb-6 text-lg">
-                Quick Links
-              </h4>
-              <ul className="space-y-3">
-                <li>
-                  <a
-                    href="#"
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    Materials
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    Roadmaps
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            {/* Resources */}
-            <div>
-              <h4 className="font-semibold text-foreground mb-6 text-lg">
-                Resources
-              </h4>
-              <ul className="space-y-3">
-                <li>
-                  <a
-                    href="#"
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    Practice Labs
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    Certifications
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    Community
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Bottom Section */}
-          <div className="border-t border-border mt-16 pt-8">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <span>Made with</span>
-                <Heart className="h-4 w-4 text-red-500 fill-current" />
-                <span>by Nanda Krishnan V</span>
-              </div>
-              <div className="flex items-center gap-8 text-muted-foreground">
-                <a href="#" className="hover:text-foreground transition-colors">
-                  Privacy Policy
-                </a>
-                <a href="#" className="hover:text-foreground transition-colors">
-                  Terms of Service
-                </a>
-                <span>© 2025 HackersGlobe. All rights reserved.</span>
               </div>
             </div>
           </div>
