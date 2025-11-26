@@ -15,7 +15,8 @@ const Interview: React.FC = () => {
             Interview Preparation
           </h1>
           <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
-            Coming soon: Practice cybersecurity interview questions and preparation resources.
+            Coming soon: Practice cybersecurity interview questions and
+            preparation resources.
           </p>
         </div>
       </section>

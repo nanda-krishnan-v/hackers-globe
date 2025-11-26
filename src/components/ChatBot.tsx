@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { Send, Loader2 } from "lucide-react";
 
 const ChatBot: React.FC = () => {
-  const [messages, setMessages] = useState<Array<{ role: string; content: string }>>([
+  const [messages, setMessages] = useState<
+    Array<{ role: string; content: string }>
+  >([
     {
       role: "assistant",
-      content: "Hi! I'm your AI interview assistant. Ask me about cybersecurity concepts, interview tips, or practice scenarios.",
+      content:
+        "Hi! I'm your AI interview assistant. Ask me about cybersecurity concepts, interview tips, or practice scenarios.",
     },
   ]);
   const [input, setInput] = useState("");
@@ -26,7 +29,8 @@ const ChatBot: React.FC = () => {
         ...prev,
         {
           role: "assistant",
-          content: "This is a placeholder response. Configure your Gemini API key to enable AI responses.",
+          content:
+            "This is a placeholder response. Configure your Gemini API key to enable AI responses.",
         },
       ]);
       setIsLoading(false);
@@ -40,7 +44,9 @@ const ChatBot: React.FC = () => {
         {messages.map((message, index) => (
           <div
             key={index}
-            className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
+            className={`flex ${
+              message.role === "user" ? "justify-end" : "justify-start"
+            }`}
           >
             <div
               className={`max-w-[80%] rounded-lg p-4 ${
